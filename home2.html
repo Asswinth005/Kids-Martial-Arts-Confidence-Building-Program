@@ -1,0 +1,949 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Little Warriors | Home 2 – Path to Confidence</title>
+  <!-- Favicon (martial arts belt / star) -->
+  <link rel="icon" type="image/svg+xml" href="assest/favicon.svg">
+  <meta name="description" content="Kids martial arts and confidence building program. Build focus, discipline, and self-esteem in a fun, safe environment. Programs by age and belt level.">
+  <!-- Tailwind + config (same structure but new colors for martial arts) -->
+  <script src="tailwind.js"></script>
+  <script>
+    if (typeof tailwind === 'undefined') {
+      document.write('<script src="https://cdn.tailwindcss.com"><\/script>');
+    }
+  </script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'dojo-red': '#B22222',
+            'dojo-red-light': '#D44A4A',
+            'dojo-red-dark': '#7A1A1A',
+            'dojo-gold': '#D4AF37',
+            'dojo-parchment': '#FDF8F0',
+            'dojo-ink': '#1E1E1E',
+            'dojo-sand': '#EAE0D0',
+            'dojo-blue': '#1F3A5F',
+            'dojo-blue-light': '#2F5A8F',
+            'dojo-wood': '#8B5E3C',
+          },
+          fontFamily: {
+            'serif': ['Libre Baskerville', 'Georgia', 'serif'],
+            'heading': ['Playfair Display', 'serif'],
+            'body': ['Lato', 'system-ui', 'sans-serif'],
+            'script': ['Great Vibes', 'cursive'],
+            'alt-serif': ['Libre Baskerville', 'serif'],
+            'sans': ['Lato', 'Inter', 'sans-serif'],
+          },
+          animation: {
+            'fade-up': 'fadeUp 0.8s ease-out',
+            'slow-spin': 'spin 25s linear infinite',
+            'float': 'float 6s ease-in-out infinite',
+          },
+          keyframes: {
+            fadeUp: {
+              '0%': { transform: 'translateY(30px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-15px)' },
+            },
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800;900&family=Lato:wght@300;400;700;900&family=Great+Vibes&family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      background: #FFFFFF;
+      font-family: 'Lato', sans-serif;
+      color: #1E1E1E;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    .dark body {
+      background: #0A0A0A;
+      color: #EDE4D8;
+    }
+    p {
+      line-height: 1.8;
+      letter-spacing: 0.01em;
+      font-size: 1.05rem;
+    }
+    h1, h2, h3, h4, .heading-font { font-family: 'Playfair Display', serif; }
+    .serif-text { font-family: 'Libre Baskerville', serif; }
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #EAE0D0; }
+    ::-webkit-scrollbar-thumb { background: #B22222; border-radius: 4px; }
+    .dark ::-webkit-scrollbar-track { background: #1F1F1F; }
+    .dark ::-webkit-scrollbar-thumb { background: #B22222; }
+
+    /* Navigation – same structure, new colors */
+    .nav-item {
+      position: relative;
+      font-family: 'Libre Baskerville', serif;
+      font-weight: 500;
+      font-size: 0.95rem;
+      letter-spacing: 0.03em;
+      color: #1E1E1E;
+      transition: color 0.3s ease;
+      padding: 0.5rem 0;
+    }
+    .dark .nav-item { color: #EAE0D0; }
+    .nav-item:hover { color: #B22222; }
+    .dark .nav-item:hover { color: #D4AF37; }
+    .nav-item::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 2px;
+      background: #B22222;
+      transition: width 0.3s ease;
+    }
+    .dark .nav-item::after { background: #D4AF37; }
+    .nav-item:hover::after { width: 100%; }
+
+    /* Dropdown */
+    .dropdown { position: relative; }
+    .dropdown-menu {
+      position: absolute;
+      top: 100%; left: 0;
+      min-width: 220px;
+      background: #FFF8F0;
+      border-radius: 8px;
+      padding: 0.75rem 0;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+      opacity: 0; visibility: hidden;
+      transform: translateY(10px);
+      transition: all 0.3s ease;
+      z-index: 1000;
+      border: 1px solid #D4AF37;
+    }
+    .dark .dropdown-menu { background: #1A1A1A; border-color: #B22222; }
+    .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+    .dropdown-item {
+      display: flex; align-items: center;
+      padding: 0.7rem 1.5rem;
+      color: #1E1E1E;
+      font-family: 'Lato', sans-serif;
+      transition: all 0.2s;
+    }
+    .dark .dropdown-item { color: #EAE0D0; }
+    .dropdown-item:hover { background: #EAE0D0; color: #B22222; padding-left: 1.75rem; }
+    .dark .dropdown-item:hover { background: #2A1A1A; color: #D4AF37; }
+    .dropdown-item.active { background: #EAE0D0; color: #B22222; font-weight: 600; padding-left: 1.75rem; }
+    .dark .dropdown-item.active { background: #2A1A1A; color: #D4AF37; }
+    .dropdown-item i { margin-right: 0.75rem; width: 20px; color: #B22222; }
+
+    /* Auth button */
+    .auth-btn {
+      padding: 0.55rem 1.6rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.95rem;
+      letter-spacing: 0.5px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      background: #B22222;
+      color: #FFFFFF;
+      border: 1px solid #B22222;
+      box-shadow: 0 2px 8px rgba(178, 34, 34, 0.25);
+    }
+    .auth-btn:hover {
+      background: #7A1A1A;
+      border-color: #7A1A1A;
+      color: #FFFFFF;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(178, 34, 34, 0.35);
+    }
+    .dark .auth-btn {
+      background: #D4AF37;
+      border-color: #D4AF37;
+      color: #1E1E1E;
+      box-shadow: 0 2px 8px rgba(212, 175, 55, 0.25);
+    }
+    .dark .auth-btn:hover {
+      background: #B89628;
+      border-color: #B89628;
+      color: #1E1E1E;
+      transform: translateY(-2px);
+    }
+
+    /* Toggle buttons */
+    .toggle-btn {
+      width: 36px; height: 36px;
+      border-radius: 6px;
+      background: #EAE0D0;
+      color: #7A1A1A;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .dark .toggle-btn { background: #1A1A1A; color: #D4AF37; }
+    .toggle-btn:hover { background: #B22222; color: white; }
+    .toggle-btn.active { background: #B22222; color: white; }
+    .dark .toggle-btn.active { background: #D4AF37; color: #1E1E1E; }
+
+    /* Cards */
+    .vintage-card {
+      background: #FFF8F0;
+      border: 1px solid #EAE0D0;
+      transition: all 0.4s;
+      box-shadow: 8px 8px 20px rgba(0,0,0,0.03);
+      border-radius: 12px;
+    }
+    .dark .vintage-card { background: #121212; border-color: #2F2F2F; }
+    .vintage-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 35px -12px rgba(178,34,34,0.25);
+      border-color: #D4AF37;
+    }
+    .service-icon {
+      width: 80px; height: 80px;
+      background: rgba(178,34,34,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: #B22222;
+      margin-bottom: 1.2rem;
+      border-radius: 12px;
+    }
+    .dark .service-icon { background: rgba(212,175,55,0.1); color: #D4AF37; }
+
+    /* Hero overlay */
+    .hero-overlay {
+      background: linear-gradient(135deg, rgba(30,30,30,0.85) 0%, rgba(122,26,26,0.7) 100%);
+    }
+
+    /* Button primary */
+    .btn-heritage {
+      background: #B22222;
+      color: white;
+      padding: 0.85rem 2rem;
+      font-family: 'Libre Baskerville', serif;
+      letter-spacing: 1px;
+      transition: all 0.3s;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border-radius: 8px;
+    }
+    .dark .btn-heritage { background: #D4AF37; color: #1E1E1E; }
+    .btn-heritage:hover { background: #7A1A1A; transform: translateY(-3px); box-shadow: 0 12px 20px -8px rgba(0,0,0,0.3); }
+
+    /* Footer */
+    footer {
+      background: #121212;
+      color: #EAE0D0;
+      border-top: 1px solid #D4AF37;
+    }
+    .dark footer { background: #0A0A0A; }
+    footer p,
+    footer a,
+    footer span,
+    footer li {
+      color: #EAE0D0;
+    }
+    footer a:hover { color: #D4AF37; }
+    .social-icon {
+      width: 38px; height: 38px;
+      background: rgba(200,180,140,0.15);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      border-radius: 8px;
+    }
+    .social-icon:hover { background: #D4AF37; color: #1E1E1E; transform: translateY(-3px); }
+
+    .heritage-line {
+      width: 70px;
+      height: 3px;
+      background: #D4AF37;
+      margin: 1rem auto;
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      background: #FFFFFF;
+      border-top: 1px solid #D4AF37;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+    }
+    .dark .mobile-menu { background: #121212; border-color: #B22222; }
+    .mobile-menu.open { max-height: 85vh; overflow-y: auto; }
+    .mobile-menu-item {
+      display: block;
+      padding: 1rem 1.5rem;
+      font-family: 'Libre Baskerville', serif;
+      border-bottom: 1px solid #EAE0D0;
+      color: #1E1E1E;
+    }
+    .dark .mobile-menu-item { color: #EAE0D0; border-bottom-color: #2F2F2F; }
+    .mobile-menu-item.active, .mobile-dropdown-content a.active { color: #B22222; font-weight: 600; }
+    .dark .mobile-menu-item.active, .dark .mobile-dropdown-content a.active { color: #D4AF37; }
+    .mobile-dropdown-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s;
+      background: #F5EDE0;
+    }
+    .dark .mobile-dropdown-content { background: #1A1A1A; }
+    .mobile-dropdown-content.show { max-height: 250px; }
+    @media (max-width: 1279px) { .desktop-toggle-group { display: none !important; } }
+
+    /* RTL support (same as reference) */
+    [dir="rtl"] { direction: rtl; text-align: right; }
+    [dir="rtl"] .space-x-3 > :not([hidden]) ~ :not([hidden]) {
+      --tw-space-x-reverse: 1;
+      margin-right: calc(0.75rem * var(--tw-space-x-reverse));
+      margin-left: calc(0.75rem * calc(1 - var(--tw-space-x-reverse)));
+    }
+    [dir="rtl"] .gap-8 { gap: 2rem; }
+    [dir="rtl"] .ml-8 { margin-left: 0; margin-right: 2rem; }
+    [dir="rtl"] .ml-4 { margin-left: 0; margin-right: 1rem; }
+    [dir="rtl"] .mr-2 { margin-right: 0; margin-left: 0.5rem; }
+    [dir="rtl"] .mr-1 { margin-right: 0; margin-left: 0.25rem; }
+    [dir="rtl"] .dropdown-menu { left: auto; right: 0; }
+    [dir="rtl"] .dropdown-item i { margin-right: 0; margin-left: 0.75rem; }
+    [dir="rtl"] .border-l-4 { border-left-width: 0; border-right-width: 4px; }
+    [dir="rtl"] .rounded-r-lg { border-radius: 0.5rem 0 0 0.5rem; }
+    @media (min-width: 768px) {
+      [dir="rtl"] .md\:text-left { text-align: right; }
+      [dir="rtl"] .md\:justify-start { justify-content: flex-start; }
+    }
+    [dir="rtl"] .footer-heading {
+      border-right: 4px solid #D4AF37;
+      border-left: none;
+      padding-right: 0.75rem;
+      padding-left: 0;
+      text-align: right;
+    }
+    [dir="rtl"] .footer-contact-item { gap: 0.75rem; display: flex; align-items: center; }
+    [dir="rtl"] .footer-contact-item i { margin: 0; }
+    @media (min-width: 768px) {
+      [dir="rtl"] .footer-contact-item { justify-content: flex-start; }
+    }
+    @media (max-width: 767px) {
+      [dir="rtl"] .footer-contact-item { justify-content: center; }
+    }
+    .footer-heading {
+      border-left: 4px solid #D4AF37;
+      padding-left: 0.75rem;
+      display: inline-block;
+    }
+    .footer-contact-item { display: flex; gap: 0.75rem; align-items: center; }
+    .footer-contact-item i { width: 20px; }
+
+    /* Additional custom for kids martial arts */
+    .belt-stripe {
+      width: 60px;
+      height: 6px;
+      background: #D4AF37;
+      border-radius: 3px;
+      margin: 0.5rem auto;
+    }
+    .confidence-badge {
+      background: rgba(212, 175, 55, 0.15);
+      border: 1px solid #D4AF37;
+      border-radius: 30px;
+      padding: 0.4rem 1.2rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #7A1A1A;
+      display: inline-block;
+    }
+    .dark .confidence-badge { color: #D4AF37; border-color: #B22222; }
+  </style>
+</head>
+<body class="bg-white dark:bg-black">
+
+  <!-- ========== HEADER – EXACT COPY FROM REFERENCE ========== -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-[#121212]/95 backdrop-blur-md border-b border-dojo-gold/30">
+    <div class="container mx-auto px-6">
+      <div class="flex items-center justify-between h-20">
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center space-x-3 group">
+          <div class="w-10 h-10 bg-dojo-red dark:bg-dojo-red flex items-center justify-center rounded-lg">
+            <i class="fas fa-fist-raised text-white text-xl"></i>
+          </div>
+          <div>
+            <span class="text-2xl font-heading font-bold text-dojo-red dark:text-dojo-red">Little Warriors</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <div class="hidden xl:flex items-center">
+          <div class="flex items-center gap-8">
+            <div class="dropdown">
+              <button class="nav-item active text-dojo-red dark:text-dojo-gold font-semibold flex items-center gap-1">
+                Home <i class="fas fa-chevron-down text-[10px]"></i>
+              </button>
+              <div class="dropdown-menu">
+                <a href="index.html" class="dropdown-item">Home 1</a>
+                <a href="home2.html" class="dropdown-item active">Home 2</a>
+              </div>
+            </div>
+            <a href="about.html" class="nav-item">About</a>
+            <a href="programs.html" class="nav-item">Programs</a>
+            <a href="instructors.html" class="nav-item">Instructors</a>
+            <a href="schedule.html" class="nav-item">Schedule</a>
+            <a href="contact.html" class="nav-item">Contact</a>
+            <div class="dropdown">
+              <button class="nav-item flex items-center gap-1">Dashboard <i class="fas fa-chevron-down text-[10px]"></i></button>
+              <div class="dropdown-menu">
+                <a href="client.html" class="dropdown-item">Client</a>
+                <a href="admin.html" class="dropdown-item">Admin</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex items-center ml-8">
+            <a href="login.html" class="auth-btn">Login</a>
+          </div>
+
+          <div class="flex gap-2 ml-4 desktop-toggle-group">
+            <button id="theme-toggle" class="toggle-btn" title="Theme"><i class="fas fa-moon"></i><i class="fas fa-sun" style="display:none"></i></button>
+            <button id="rtl-toggle" class="toggle-btn" title="RTL">⇄</button>
+          </div>
+        </div>
+
+        <button id="mobile-toggle" class="xl:hidden text-dojo-ink dark:text-dojo-gold p-2 text-2xl">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="mobile-menu xl:hidden">
+        <div class="mobile-dropdown">
+          <button class="mobile-dropdown-btn flex justify-between items-center w-full mobile-menu-item active text-[15px] py-3">
+            Home <i class="fas fa-chevron-down text-xs"></i>
+          </button>
+          <div class="mobile-dropdown-content">
+            <a href="index.html" class="block px-8 py-2 text-[14px]">Home 1</a>
+            <a href="home2.html" class="block px-8 py-2 text-[14px] active">Home 2</a>
+          </div>
+        </div>
+        <a href="about.html" class="mobile-menu-item">About</a>
+        <a href="programs.html" class="mobile-menu-item">Programs</a>
+        <a href="instructors.html" class="mobile-menu-item">Instructors</a>
+        <a href="schedule.html" class="mobile-menu-item">Schedule</a>
+        <a href="contact.html" class="mobile-menu-item">Contact</a>
+        <div class="mobile-dropdown">
+          <button class="mobile-dropdown-btn flex justify-between w-full mobile-menu-item">Dashboard <i class="fas fa-chevron-down"></i></button>
+          <div class="mobile-dropdown-content">
+            <a href="client.html" class="block px-8 py-3 text-sm hover:bg-dojo-gold/10 transition">Client</a>
+            <a href="admin.html" class="block px-8 py-3 text-sm hover:bg-dojo-gold/10 transition">Admin</a>
+          </div>
+        </div>
+        <div class="flex justify-center p-6">
+          <a href="login.html" class="auth-btn text-center py-3">Login</a>
+        </div>
+        <div class="flex justify-center gap-3 p-6 border-t border-dojo-gold/20">
+          <button id="theme-toggle-mobile" class="toggle-btn"><i class="fas fa-moon"></i><i class="fas fa-sun" style="display:none"></i></button>
+          <button id="rtl-toggle-mobile" class="toggle-btn">⇄</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========== HOME 2 – NEW DESIGN ========== -->
+
+  <!-- 1. HERO – SPLIT LAYOUT with oversized typography & belt visual -->
+  <section class="relative pt-32 pb-16 md:pt-40 md:pb-24 bg-dojo-parchment dark:bg-[#0F0F0F] overflow-hidden">
+    <div class="absolute top-0 right-0 w-1/2 h-full bg-dojo-red/5 dark:bg-dojo-red/10 clip-path-slant hidden lg:block"></div>
+    <div class="container mx-auto px-6 relative z-10">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-7">
+          <div class="flex items-center gap-3 mb-5">
+            <span class="w-12 h-0.5 bg-dojo-gold"></span>
+            <span class="text-dojo-red dark:text-dojo-gold font-serif text-sm tracking-[0.2em] uppercase">New session starts soon</span>
+          </div>
+          <h1 class="text-6xl md:text-7xl xl:text-8xl font-heading font-bold leading-[0.9] text-dojo-ink dark:text-white">
+            Forge<br>
+            <span class="text-dojo-red dark:text-dojo-gold">Unshakable</span><br>
+            Confidence.
+          </h1>
+          <p class="text-xl md:text-2xl text-dojo-ink/80 dark:text-dojo-parchment max-w-xl mt-8 font-body leading-relaxed">
+            Not just martial arts — a mentorship program where kids discover their strength, focus, and respect.
+          </p>
+          <div class="flex flex-wrap gap-4 mt-10">
+            <a href="#" class="btn-heritage text-lg px-8 py-4 rounded-lg shadow-lg shadow-dojo-red/20"><i class="fas fa-play-circle"></i> Watch the film</a>
+            <a href="#" class="border-2 border-dojo-ink/20 dark:border-dojo-gold/50 text-dojo-ink dark:text-dojo-gold px-8 py-4 font-body font-semibold hover:border-dojo-red hover:text-dojo-red dark:hover:text-dojo-gold transition rounded-lg flex items-center gap-2">
+              <i class="fas fa-download"></i> Program guide
+            </a>
+          </div>
+          
+        </div>
+        <div class="lg:col-span-5 relative hidden lg:block">
+          <div class="relative z-10">
+            <img src="/assest/b1.jpg" alt="Kid training" class="rounded-2xl shadow-2xl border-8 border-white dark:border-[#1F1F1F] w-full object-cover h-[560px]">
+            <!-- floating belt badge -->
+            <div class="absolute -bottom-6 -left-6 bg-dojo-gold text-dojo-ink p-5 rounded-xl shadow-2xl flex items-center gap-3 animate-float">
+              <i class="fas fa-medal text-3xl"></i>
+              <div><p class="font-heading font-bold text-lg leading-tight">Junior<br>Black Belt</p></div>
+            </div>
+            <div class="absolute -top-4 -right-4 bg-dojo-red text-white p-4 rounded-full w-20 h-20 flex items-center justify-center font-heading font-bold text-center text-sm shadow-xl rotate-12">Ages<br>4–14</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <style>
+      .clip-path-slant { clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%); }
+    </style>
+  </section>
+
+  <!-- 2. STATS / SOCIAL PROOF STRIP -->
+  <section class="py-10 bg-dojo-ink dark:bg-[#0A0A0A] border-y border-dojo-gold/20">
+    <div class="container mx-auto px-6">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div><span class="block text-4xl md:text-5xl font-heading font-bold text-dojo-gold">15+</span><span class="text-dojo-parchment/80 font-body text-sm tracking-wider">Years of impact</span></div>
+        <div><span class="block text-4xl md:text-5xl font-heading font-bold text-dojo-gold">200+</span><span class="text-dojo-parchment/80 font-body text-sm tracking-wider">Active warriors</span></div>
+        <div><span class="block text-4xl md:text-5xl font-heading font-bold text-dojo-gold">98%</span><span class="text-dojo-parchment/80 font-body text-sm tracking-wider">Parent satisfaction</span></div>
+        <div><span class="block text-4xl md:text-5xl font-heading font-bold text-dojo-gold">12</span><span class="text-dojo-parchment/80 font-body text-sm tracking-wider">Certified instructors</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. PATH TO BLACK BELT – TIMELINE DESIGN (NEW) -->
+  <section class="py-24 bg-white dark:bg-[#0F0F0F]">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-20">
+        <span class="text-dojo-red dark:text-dojo-gold font-serif text-sm tracking-[0.3em] uppercase">The journey</span>
+        <h2 class="text-5xl md:text-6xl font-heading font-bold mt-4 text-dojo-ink dark:text-white">Path to <span class="text-dojo-red dark:text-dojo-gold">Black Belt</span></h2>
+        <div class="heritage-line mx-auto my-5"></div>
+        <p class="text-lg max-w-2xl mx-auto font-body text-dojo-ink/70 dark:text-dojo-parchment/80">Each belt is a milestone. Your child builds skills, character, and confidence step by step.</p>
+      </div>
+      <div class="relative max-w-5xl mx-auto">
+        <!-- central line -->
+        <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-dojo-gold/30 hidden md:block"></div>
+        <!-- timeline items -->
+        <div class="space-y-16 md:space-y-0">
+          <!-- item 1 -->
+          <div class="md:flex items-center justify-between gap-8 relative">
+            <div class="md:w-5/12 text-right md:pr-12">
+              <div class="vintage-card p-6 inline-block w-full">
+                <span class="text-dojo-gold text-3xl font-heading font-bold">01</span>
+                <h3 class="text-2xl font-heading font-bold mt-2 dark:text-white">White Belt</h3>
+                <p class="text-dojo-ink/70 dark:text-dojo-parchment/70 text-sm mt-2">Focus, listening, and basic stances. Building the foundation of respect.</p>
+              </div>
+            </div>
+            <div class="hidden md:flex w-2/12 justify-center relative">
+              <div class="w-8 h-8 bg-dojo-gold rounded-full border-4 border-white dark:border-[#0F0F0F] z-10 shadow-lg"></div>
+            </div>
+            <div class="md:w-5/12 md:pl-12"></div>
+          </div>
+          <!-- item 2 -->
+          <div class="md:flex items-center justify-between gap-8 relative mt-8 md:-mt-4">
+            <div class="md:w-5/12 md:pr-12"></div>
+            <div class="hidden md:flex w-2/12 justify-center relative">
+              <div class="w-8 h-8 bg-dojo-gold rounded-full border-4 border-white dark:border-[#0F0F0F] z-10 shadow-lg"></div>
+            </div>
+            <div class="md:w-5/12 text-left md:pl-12">
+              <div class="vintage-card p-6 inline-block w-full">
+                <span class="text-dojo-gold text-3xl font-heading font-bold">02</span>
+                <h3 class="text-2xl font-heading font-bold mt-2 dark:text-white">Yellow Belt</h3>
+                <p class="text-dojo-ink/70 dark:text-dojo-parchment/70 text-sm mt-2">Coordination, teamwork, and beginner self-defense. Confidence starts to bloom.</p>
+              </div>
+            </div>
+          </div>
+          <!-- item 3 -->
+          <div class="md:flex items-center justify-between gap-8 relative mt-8 md:-mt-4">
+            <div class="md:w-5/12 text-right md:pr-12">
+              <div class="vintage-card p-6 inline-block w-full">
+                <span class="text-dojo-gold text-3xl font-heading font-bold">03</span>
+                <h3 class="text-2xl font-heading font-bold mt-2 dark:text-white">Green Belt</h3>
+                <p class="text-dojo-ink/70 dark:text-dojo-parchment/70 text-sm mt-2">Sparring basics, goal setting, and leadership within the dojo.</p>
+              </div>
+            </div>
+            <div class="hidden md:flex w-2/12 justify-center relative">
+              <div class="w-8 h-8 bg-dojo-gold rounded-full border-4 border-white dark:border-[#0F0F0F] z-10 shadow-lg"></div>
+            </div>
+            <div class="md:w-5/12 md:pl-12"></div>
+          </div>
+          <!-- item 4 -->
+          <div class="md:flex items-center justify-between gap-8 relative mt-8 md:-mt-4">
+            <div class="md:w-5/12 md:pr-12"></div>
+            <div class="hidden md:flex w-2/12 justify-center relative">
+              <div class="w-8 h-8 bg-dojo-gold rounded-full border-4 border-white dark:border-[#0F0F0F] z-10 shadow-lg"></div>
+            </div>
+            <div class="md:w-5/12 text-left md:pl-12">
+              <div class="vintage-card p-6 inline-block w-full">
+                <span class="text-dojo-gold text-3xl font-heading font-bold">04</span>
+                <h3 class="text-2xl font-heading font-bold mt-2 dark:text-white">Junior Black Belt</h3>
+                <p class="text-dojo-ink/70 dark:text-dojo-parchment/70 text-sm mt-2">Mastery of basics, mentoring younger students, and unwavering focus.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. WHY OUR APPROACH WORKS – ASYMMETRIC FEATURE GRID -->
+  <section class="py-24 bg-dojo-parchment dark:bg-[#121212]">
+    <div class="container mx-auto px-6">
+      <div class="grid lg:grid-cols-2 gap-16 items-start">
+        <div class="static xl:sticky xl:top-28">
+          <span class="text-dojo-red dark:text-dojo-gold font-serif text-sm tracking-widest uppercase">Methodology</span>
+          <h2 class="text-5xl md:text-6xl font-heading font-bold mt-4 leading-tight text-dojo-ink dark:text-white">More than <br>kicks & punches</h2>
+          <div class="heritage-line w-24 my-6"></div>
+          <p class="text-lg text-dojo-ink/80 dark:text-dojo-parchment/80 font-body leading-relaxed max-w-md">Our curriculum integrates physical literacy, emotional regulation, and social skills — all through the lens of martial arts.</p>
+          <div class="mt-8">
+            <img src="/assest/b3.jpg" alt="Kids training" class="rounded-xl shadow-xl w-full h-72 object-cover border-4 border-white dark:border-[#2A2A2A]">
+          </div>
+        </div>
+        <div class="space-y-8">
+          <!-- feature card 1 -->
+          <div class="flex gap-6 p-6 rounded-xl bg-white dark:bg-[#1E1E1E] shadow-md border-l-4 border-dojo-gold">
+            <div class="text-dojo-gold text-3xl"><i class="fas fa-bolt"></i></div>
+            <div><h3 class="text-xl font-heading font-bold dark:text-white">Focus & Attention Drills</h3><p class="text-dojo-ink/70 dark:text-dojo-parchment/70 mt-2">Short, game-based exercises that improve concentration and impulse control — skills that carry over to the classroom.</p></div>
+          </div>
+          <div class="flex gap-6 p-6 rounded-xl bg-white dark:bg-[#1E1E1E] shadow-md border-l-4 border-dojo-gold">
+            <div class="text-dojo-gold text-3xl"><i class="fas fa-hand-holding-heart"></i></div>
+            <div><h3 class="text-xl font-heading font-bold dark:text-white">Respect & Empathy Circle</h3><p class="text-dojo-ink/70 dark:text-dojo-parchment/70 mt-2">Every class ends with reflection, compliments, and a handshake — building character alongside technique.</p></div>
+          </div>
+          <div class="flex gap-6 p-6 rounded-xl bg-white dark:bg-[#1E1E1E] shadow-md border-l-4 border-dojo-gold">
+            <div class="text-dojo-gold text-3xl"><i class="fas fa-chart-simple"></i></div>
+            <div><h3 class="text-xl font-heading font-bold dark:text-white">Parent Progress Portal</h3><p class="text-dojo-ink/70 dark:text-dojo-parchment/70 mt-2">Track belt advancement, attendance, and instructor notes. Stay connected to your child's growth.</p></div>
+          </div>
+          <div class="flex gap-6 p-6 rounded-xl bg-white dark:bg-[#1E1E1E] shadow-md border-l-4 border-dojo-gold">
+            <div class="text-dojo-gold text-3xl"><i class="fas fa-shield"></i></div>
+            <div><h3 class="text-xl font-heading font-semibold dark:text-white">Anti-Bullying & Awareness</h3><p class="text-dojo-ink/70 dark:text-dojo-parchment/70 mt-2">Practical, age-appropriate verbal and physical strategies to stay safe and confident.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== KIDS TRAINING SHOWCASE (HOME 2 - SIMPLE 4-CARD SHOWCASE) ========== -->
+  <section class="py-16 md:py-20 bg-gray-50 dark:bg-[#121214] border-t border-dojo-sand/30 dark:border-white/5">
+    <div class="container mx-auto px-6">
+      <div class="text-center max-w-xl mx-auto mb-10">
+        <h2 class="text-2xl md:text-4xl font-heading font-semibold text-dojo-ink dark:text-white">
+          Moments on the Mat
+        </h2>
+        <p class="text-dojo-ink/70 dark:text-dojo-parchment/70 text-sm md:text-base mt-2 font-normal">
+          Building strength, confidence, and character every single day.
+        </p>
+      </div>
+
+      <!-- 4-Card Simple Action Showcase -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+        <!-- Card 1 -->
+        <div class="group relative rounded-2xl overflow-hidden shadow-sm aspect-[3/4] bg-gray-900">
+          <img src="/assest/f1.jpg" 
+               alt="Focus and kick training" 
+               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
+          <div class="absolute bottom-4 left-4 right-4">
+            <span class="text-white text-base md:text-lg font-heading font-semibold tracking-wide">Focus</span>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="group relative rounded-2xl overflow-hidden shadow-sm aspect-[3/4] bg-gray-900">
+          <img src="/assest/f4.jpg" 
+               alt="Discipline and partner drills" 
+               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
+          <div class="absolute bottom-4 left-4 right-4">
+            <span class="text-white text-base md:text-lg font-heading font-semibold tracking-wide">Discipline</span>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="group relative rounded-2xl overflow-hidden shadow-sm aspect-[3/4] bg-gray-900">
+          <img src="/assest/f5.jpg" 
+               alt="Confidence and agility" 
+               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
+          <div class="absolute bottom-4 left-4 right-4">
+            <span class="text-white text-base md:text-lg font-heading font-semibold tracking-wide">Confidence</span>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="group relative rounded-2xl overflow-hidden shadow-sm aspect-[3/4] bg-gray-900">
+          <img src="/assest/f6.jpg" 
+               alt="Respect and mindfulness" 
+               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
+          <div class="absolute bottom-4 left-4 right-4">
+            <span class="text-white text-base md:text-lg font-heading font-semibold tracking-wide">Respect</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. TESTIMONIAL CAROUSEL STYLE (NEW LAYOUT) -->
+  <section class="py-24 bg-white dark:bg-[#0F0F0F]">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <i class="fas fa-quote-right text-6xl text-dojo-gold/30"></i>
+        <h2 class="text-4xl md:text-5xl font-heading font-bold text-dojo-ink dark:text-white mt-4">Stories from the dojo</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="vintage-card p-8 relative flex flex-col h-full">
+          <div class="flex-1">
+            <div class="flex text-dojo-gold text-sm mb-4">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p class="text-dojo-ink dark:text-dojo-parchment italic leading-relaxed">&ldquo;My daughter used to be terrified of trying new things. After 8 months, she raised her hand to lead the warm-up. I cried.&rdquo;</p>
+          </div>
+          <div class="flex items-center gap-3 mt-auto pt-6 border-t border-dojo-gold/20">
+            <img src="https://i.pravatar.cc/100?img=10" class="w-12 h-12 rounded-full" alt="Melissa R.">
+            <div><p class="font-bold font-heading dark:text-white">Melissa R.</p><p class="text-sm text-dojo-red dark:text-dojo-gold">Parent of Lily, 8</p></div>
+          </div>
+        </div>
+        <div class="vintage-card p-8 relative flex flex-col h-full">
+          <div class="flex-1">
+            <div class="flex text-dojo-gold text-sm mb-4">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p class="text-dojo-ink dark:text-dojo-parchment italic leading-relaxed">&ldquo;The instructors know how to push without breaking. My son's focus at school improved dramatically. Worth every penny.&rdquo;</p>
+          </div>
+          <div class="flex items-center gap-3 mt-auto pt-6 border-t border-dojo-gold/20">
+            <img src="https://i.pravatar.cc/100?img=12" class="w-12 h-12 rounded-full" alt="David K.">
+            <div><p class="font-bold font-heading dark:text-white">David K.</p><p class="text-sm text-dojo-red dark:text-dojo-gold">Parent of Ethan, 10</p></div>
+          </div>
+        </div>
+        <div class="vintage-card p-8 relative flex flex-col h-full">
+          <div class="flex-1">
+            <div class="flex text-dojo-gold text-sm mb-4">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p class="text-dojo-ink dark:text-dojo-parchment italic leading-relaxed">&ldquo;A safe, positive space where kids learn respect and resilience. The belt ceremonies are incredibly motivating.&rdquo;</p>
+          </div>
+          <div class="flex items-center gap-3 mt-auto pt-6 border-t border-dojo-gold/20">
+            <img src="assest/parent-amara.jpg" alt="Priya S." class="w-12 h-12 rounded-full object-cover">
+            <div><p class="font-bold font-heading dark:text-white">Priya S.</p><p class="text-sm text-dojo-red dark:text-dojo-gold">Parent of Arjun, 6</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. TRAINING HUB / RESOURCE SECTION (NEW) -->
+  <section class="py-24 bg-dojo-parchment dark:bg-[#121212] border-t border-dojo-gold/10">
+    <div class="container mx-auto px-6">
+      <div class="grid lg:grid-cols-4 gap-8">
+        <div class="lg:col-span-1">
+          <span class="text-dojo-gold font-serif text-sm tracking-widest uppercase">Resources</span>
+          <h2 class="text-4xl font-heading font-bold text-dojo-ink dark:text-white mt-3">Training Hub</h2>
+          <p class="text-dojo-ink/70 dark:text-dojo-parchment/70 mt-4">Tools for parents and students to extend learning beyond the dojo.</p>
+        </div>
+        <div class="lg:col-span-3 grid sm:grid-cols-2 gap-6">
+          <div class="flex gap-5 p-6 bg-white dark:bg-[#1A1A1A] rounded-xl hover:shadow-lg transition border border-dojo-gold/20">
+            <i class="fas fa-video text-dojo-red dark:text-dojo-gold text-3xl"></i>
+            <div><h3 class="font-heading font-bold text-xl dark:text-white">Video Library</h3><p class="text-sm text-dojo-ink/70 dark:text-dojo-parchment/70 mt-2">Belt-specific tutorials and drills to practice at home.</p></div>
+          </div>
+          <div class="flex gap-5 p-6 bg-white dark:bg-[#1A1A1A] rounded-xl hover:shadow-lg transition border border-dojo-gold/20">
+            <i class="fas fa-calendar-alt text-dojo-red dark:text-dojo-gold text-3xl"></i>
+            <div><h3 class="font-heading font-bold text-xl dark:text-white">Camps & Events</h3><p class="text-sm text-dojo-ink/70 dark:text-dojo-parchment/70 mt-2">Summer camps, parents' night out, and belt ceremonies.</p></div>
+          </div>
+          <div class="flex gap-5 p-6 bg-white dark:bg-[#1A1A1A] rounded-xl hover:shadow-lg transition border border-dojo-gold/20">
+            <i class="fas fa-utensils text-dojo-red dark:text-dojo-gold text-3xl"></i>
+            <div><h3 class="font-heading font-bold text-xl dark:text-white">Nutrition Guide</h3><p class="text-sm text-dojo-ink/70 dark:text-dojo-parchment/70 mt-2">Kid-friendly meal ideas for energy and focus.</p></div>
+          </div>
+          <div class="flex gap-5 p-6 bg-white dark:bg-[#1A1A1A] rounded-xl hover:shadow-lg transition border border-dojo-gold/20">
+            <i class="fas fa-book-open text-dojo-red dark:text-dojo-gold text-3xl"></i>
+            <div><h3 class="font-heading font-bold text-xl dark:text-white">Parent Handbook</h3><p class="text-sm text-dojo-ink/70 dark:text-dojo-parchment/70 mt-2">Everything you need to support your child's journey.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. FINAL CTA – MODERN, BOLD -->
+  <section class="py-20 bg-gradient-to-br from-dojo-red to-dojo-red-dark dark:from-dojo-red-dark dark:to-black relative overflow-hidden">
+    <div class="absolute inset-0 opacity-5">
+      <svg width="100%" height="100%"><pattern id="pattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M20 0 L40 20 L20 40 L0 20 Z" fill="none" stroke="white" stroke-width="1"/></pattern><rect width="100%" height="100%" fill="url(#pattern)"/></svg>
+    </div>
+    <div class="container mx-auto px-6 text-center relative z-10">
+      <h2 class="text-5xl md:text-6xl font-heading font-bold text-white">Ready to see your child thrive?</h2>
+      <p class="text-xl text-dojo-parchment/90 max-w-xl mx-auto mt-5">Book a free trial class — no uniform, no pressure. Just bring a water bottle and a smile.</p>
+      <div class="flex flex-wrap gap-5 justify-center mt-10">
+        <a href="#" class="bg-dojo-gold text-dojo-ink px-10 py-5 font-body font-bold text-xl rounded-xl hover:bg-white transition shadow-xl">Claim free trial</a>
+        <a href="#" class="border-2 border-white/70 text-white px-10 py-5 font-body font-bold text-xl rounded-xl hover:bg-white/10 transition">View schedule</a>
+      </div>
+      <p class="text-dojo-parchment/60 text-sm mt-8">No credit card required · Cancel anytime</p>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER – EXACT COPY FROM REFERENCE ========== -->
+      <footer class="pt-16 pb-8 bg-dojo-ink dark:bg-[#12100C]">
+    <div class="container mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 xl:gap-12">
+        <!-- Column 1 -->
+        <div class="text-center md:text-left lg:col-span-4">
+          <a href="index.html" class="inline-flex items-center gap-3 mb-6 justify-center md:justify-start hover:opacity-90 transition group">
+            <div class="w-10 h-10 bg-dojo-red dark:bg-dojo-red flex items-center justify-center rounded-lg shadow-sm shrink-0">
+              <i class="fas fa-fist-raised text-white text-xl"></i>
+            </div>
+            <span class="text-xl sm:text-2xl font-heading font-semibold text-dojo-red dark:text-dojo-red whitespace-nowrap">Little Warriors</span>
+          </a>
+          <p class="text-dojo-parchment/90 font-body text-[16px] leading-relaxed mb-6 max-w-sm mx-auto md:mx-0">Building confident, disciplined, and respectful kids through martial arts since 2010.</p>
+          <div class="flex gap-3 justify-center md:justify-start">
+            <a href="#" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <!-- Column 2 -->
+        <div class="text-center md:text-left lg:col-span-2">
+          <h3 class="text-white text-xl font-heading font-semibold mb-5 footer-heading">Explore</h3>
+          <ul class="space-y-3 font-serif">
+            <li><a href="about.html" class="text-dojo-sand hover:text-dojo-gold transition block">Our Dojo</a></li>
+            <li><a href="programs.html" class="text-dojo-sand hover:text-dojo-gold transition block">Programs by Age</a></li>
+            <li><a href="programs.html" class="text-dojo-sand hover:text-dojo-gold transition block">Belt System</a></li>
+            <li><a href="client.html" class="text-dojo-sand hover:text-dojo-gold transition block">Client</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3 -->
+        <div class="text-center md:text-left lg:col-span-2">
+          <h3 class="text-white text-xl font-heading font-semibold mb-5 footer-heading">Resources</h3>
+          <ul class="space-y-3 font-serif">
+            <li><a href="schedule.html" class="text-dojo-sand hover:text-dojo-gold transition block">Class Schedule</a></li>
+            <li><a href="instructors.html" class="text-dojo-sand hover:text-dojo-gold transition block">Instructor Bios</a></li>
+            <li><a href="contact.html" class="text-dojo-sand hover:text-dojo-gold transition block">Events &amp; Camps</a></li>
+            <li><a href="contact.html" class="text-dojo-sand hover:text-dojo-gold transition block">FAQs</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4 – Contact -->
+        <div class="text-center md:text-left lg:col-span-4">
+          <h3 class="text-white text-xl font-heading font-semibold mb-5 footer-heading">Connect</h3>
+          <ul class="space-y-3 font-serif">
+            <li class="footer-contact-item justify-center md:justify-start">
+              <i class="fas fa-map-marker-alt text-dojo-gold shrink-0"></i>
+              <span class="text-dojo-sand whitespace-nowrap">123 Dojo Way, Austin, TX 78701</span>
+            </li>
+            <li class="footer-contact-item justify-center md:justify-start">
+              <i class="fas fa-phone text-dojo-gold shrink-0"></i>
+              <span class="text-dojo-sand whitespace-nowrap">(512) 555-0198</span>
+            </li>
+            <li class="footer-contact-item justify-center md:justify-start">
+              <i class="fas fa-envelope text-dojo-gold shrink-0"></i>
+              <span class="text-dojo-sand whitespace-nowrap">hello@littlewarriors.com</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-dojo-gold/30 mt-12 pt-8 text-center font-body">
+        <p class="text-dojo-sand text-[15px] md:text-base font-normal leading-relaxed opacity-95">© 2026 Little Warriors Martial Arts. Building confidence, one belt at a time.</p>
+        <p class="mt-2 text-dojo-sand text-xs md:text-sm font-normal opacity-80">Certified by the National Association of Martial Arts Educators</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== SCRIPTS (SAME AS REFERENCE) ========== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Theme Toggle
+      const themeBtn = document.getElementById('theme-toggle');
+      const themeBtnMob = document.getElementById('theme-toggle-mobile');
+      const updateThemeUI = (isDark) => {
+        [themeBtn, themeBtnMob].forEach(b => {
+          if (b) {
+            const moon = b.querySelector('.fa-moon');
+            const sun = b.querySelector('.fa-sun');
+            if (moon && sun) {
+              if (isDark) { moon.style.display = 'none'; sun.style.display = 'inline-block'; }
+              else { moon.style.display = 'inline-block'; sun.style.display = 'none'; }
+            }
+            b.classList.toggle('active', isDark);
+          }
+        });
+      };
+      const toggleTheme = () => {
+        document.documentElement.classList.toggle('dark');
+        const isDark = document.documentElement.classList.contains('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        updateThemeUI(isDark);
+      };
+      if (themeBtn) themeBtn.addEventListener('click', toggleTheme);
+      if (themeBtnMob) themeBtnMob.addEventListener('click', toggleTheme);
+      if (localStorage.getItem('theme') === 'dark') {
+        document.documentElement.classList.add('dark');
+        updateThemeUI(true);
+      }
+
+      // RTL Toggle
+      const rtlBtn = document.getElementById('rtl-toggle');
+      const rtlMob = document.getElementById('rtl-toggle-mobile');
+      const updateRtlUI = (isRtl) => {
+        const dir = isRtl ? 'rtl' : 'ltr';
+        document.documentElement.dir = dir;
+        document.documentElement.lang = isRtl ? 'ar' : 'en';
+        [rtlBtn, rtlMob].forEach(b => b && b.classList.toggle('active', isRtl));
+      };
+      const toggleRtl = () => {
+        const isRtl = document.documentElement.dir !== 'rtl';
+        localStorage.setItem('dir', isRtl ? 'rtl' : 'ltr');
+        updateRtlUI(isRtl);
+      };
+      if (rtlBtn) rtlBtn.addEventListener('click', toggleRtl);
+      if (rtlMob) rtlMob.addEventListener('click', toggleRtl);
+      if (localStorage.getItem('dir') === 'rtl') {
+        updateRtlUI(true);
+      }
+
+      // Mobile Menu
+      const mobileToggle = document.getElementById('mobile-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const icon = mobileToggle?.querySelector('i');
+      if (mobileToggle) {
+        mobileToggle.addEventListener('click', () => {
+          mobileMenu.classList.toggle('open');
+          icon.classList.toggle('fa-bars');
+          icon.classList.toggle('fa-times');
+          document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+        });
+      }
+      document.querySelectorAll('.mobile-dropdown-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const content = btn.nextElementSibling;
+          content.classList.toggle('show');
+          const icon = btn.querySelector('.fa-chevron-down');
+          if (icon) icon.style.transform = content.classList.contains('show') ? 'rotate(180deg)' : 'rotate(0)';
+        });
+      });
+
+      // Close mobile menu on clicking anchor links
+      document.querySelectorAll('#mobile-menu a[href*="#"]').forEach(anchor => {
+        anchor.addEventListener('click', () => {
+          mobileMenu?.classList.remove('open');
+          if (icon) {
+            icon.classList.add('fa-bars');
+            icon.classList.remove('fa-times');
+          }
+          document.body.style.overflow = '';
+        });
+      });
+    });
+  </script>
+</body>
+</html>

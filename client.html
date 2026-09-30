@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Instructor Dashboard | Little Warriors Martial Arts</title>
+    <link rel="icon" type="image/svg+xml" href="assest/favicon.svg">
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="tailwind.js"></script>
+    <script>
+        if (typeof tailwind === 'undefined') {
+            document.write('<script src="https://cdn.tailwindcss.com"><\/script>');
+        }
+    </script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontWeight: { bold: '600', extrabold: '600', semibold: '550' },
+                    colors: {
+                        dojo: {
+                            red: '#B22222',
+                            'red-light': '#D44A4A',
+                            'red-dark': '#7A1A1A',
+                            gold: '#D4AF37',
+                            parchment: '#FDF8F0',
+                            ink: '#1E1E1E',
+                            sand: '#EAE0D0',
+                            blue: '#1F3A5F',
+                            'blue-light': '#2F5A8F',
+                            wood: '#8B5E3C',
+                        }
+                    },
+                    fontFamily: {
+                        display: ['"Playfair Display"', 'serif'],
+                        heading: ['"Playfair Display"', 'serif'],
+                        body: ['"Lato"', 'system-ui', 'sans-serif'],
+                        serif: ['"Libre Baskerville"', 'Georgia', 'serif'],
+                    },
+                    animation: {
+                        'float-slow': 'floatSlow 6s ease-in-out infinite',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'bounce-gentle': 'bounceGentle 2.5s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        floatSlow: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-10px)' } },
+                        slideUp: { '0%': { transform: 'translateY(40px)', opacity: '0' }, '100%': { transform: 'translateY(0)', opacity: '1' } },
+                        bounceGentle: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-6px)' } },
+                    },
+                    backgroundImage: {
+                        'dojo-pattern': 'radial-gradient(circle at 30% 20%, rgba(178,34,34,0.08) 0%, transparent 60%)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:wght@400;500;600;700;800&family=Lato:wght@300;400;700;900&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <style>
+        h1, h2, h3, h4, h5, h6 { font-weight: 600 !important; font-family: 'Playfair Display', serif; }
+        p { font-weight: 400; }
+        p strong, p b, p .font-bold, p .font-semibold { font-weight: 550 !important; }
+        .font-extrabold { font-weight: 800 !important; }
+
+        .bg-dojo-red { background-color: #B22222; }
+        .text-dojo-red { color: #B22222; }
+        .border-dojo-red { border-color: #B22222; }
+        .bg-dojo-gold-light { background-color: rgba(212,175,55,0.15); }
+        .hover\:bg-dojo-red-dark:hover { background-color: #7A1A1A; }
+        .bg-dojo-parchment { background-color: #FDF8F0; }
+        .bg-dojo-sand { background-color: #EAE0D0; }
+
+        body { background-color: #FDF8F0; color: #1E1E1E; font-family: 'Lato', system-ui, sans-serif; }
+        .dark body { background-color: #0F0F0F; color: #EDE4D8; }
+        .dark .text-dojo-ink { color: #EDE4D8; }
+        .dark .text-dojo-muted { color: #A89F94; }
+        .dark .bg-dojo-sand { background-color: #1E1E1E; }
+        .dark .bg-dojo-parchment { background-color: #1A1A1A; }
+        .dark .border-dojo-sand { border-color: #2F2F2F; }
+
+        html:not(.dark) .text-dojo-muted { color: #5A4F45 !important; }
+        html:not(.dark) .text-dojo-ink-soft { color: #2D241E !important; }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #EAE0D0; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: #B22222; border-radius: 10px; }
+
+        .card-design {
+            background: #FFFFFF;
+            border-radius: 24px;
+            transition: all 0.3s ease;
+            border: 1px solid #EAE0D0;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+        }
+        .dark .card-design { background: #1A1A1A; border-color: #2F2F2F; }
+        .card-design:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 30px -8px rgba(178,34,34,0.2);
+            border-color: #D4AF37;
+        }
+
+        .btn-primary-design {
+            background-color: #B22222;
+            color: #FFFFFF;
+            font-weight: 600;
+            border-radius: 60px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(178,34,34,0.2);
+        }
+        .btn-primary-design:hover {
+            background-color: #7A1A1A;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(178,34,34,0.35);
+            color: #FFFFFF;
+        }
+        .dark .btn-primary-design { background-color: #D4AF37; color: #1E1E1E; }
+        .dark .btn-primary-design:hover { background-color: #C09B28; color: #1E1E1E; }
+
+        .btn-outline-design {
+            border: 1.5px solid #B22222;
+            color: #B22222;
+            background: transparent;
+            border-radius: 60px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        .btn-outline-design:hover { background-color: #B22222; color: #FFFFFF; transform: translateY(-2px); }
+        .dark .btn-outline-design { border-color: #D4AF37; color: #D4AF37; }
+        .dark .btn-outline-design:hover { background-color: #D4AF37; color: #1E1E1E; }
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            width: 280px;
+            background: #FFFFFF;
+            border-right: 1px solid #EAE0D0;
+            transition: transform 0.3s ease;
+            z-index: 100;
+            overflow-y: auto;
+        }
+        .dark .sidebar { background: #121212; border-right-color: #2F2F2F; }
+
+        @media (max-width: 768px) {
+            .sidebar { transform: translateX(-100%); }
+            .sidebar.open { transform: translateX(0); }
+        }
+
+        .sidebar-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 99;
+            display: none;
+        }
+        .sidebar-overlay.open { display: block; }
+
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.85rem 1.5rem;
+            margin: 0.25rem 0.75rem;
+            border-radius: 12px;
+            color: #1E1E1E;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        .dark .sidebar-item { color: #EDE4D8; }
+        .sidebar-item:hover { background: rgba(212,175,55,0.15); color: #7A1A1A; }
+        .dark .sidebar-item:hover { background: #1E1E1E; color: #D4AF37; }
+        .sidebar-item.active { background: #B22222; color: #FFFFFF; }
+        .dark .sidebar-item.active { background: #D4AF37; color: #1E1E1E; }
+        .sidebar-item i { width: 24px; font-size: 1.1rem; }
+
+        .main-content {
+            margin-left: 280px;
+            padding: 1.5rem;
+            min-height: 100vh;
+        }
+        @media (max-width: 768px) {
+            .main-content { margin-left: 0; padding-top: 70px; }
+        }
+
+        .mobile-header {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            background: #FFFFFF;
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #EAE0D0;
+            z-index: 50;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .dark .mobile-header { background: #121212; border-bottom-color: #2F2F2F; }
+        @media (max-width: 768px) { .mobile-header { display: flex; } }
+
+        .top-header {
+            background: #FFFFFF;
+            border-radius: 20px;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #EAE0D0;
+        }
+        .dark .top-header { background: #1A1A1A; border-color: #2F2F2F; }
+
+        .stat-card {
+            background: #FFFFFF;
+            border-radius: 20px;
+            padding: 1.2rem;
+            border: 1px solid #EAE0D0;
+            transition: all 0.3s;
+        }
+        .dark .stat-card { background: #1A1A1A; border-color: #2F2F2F; }
+        .stat-card:hover { transform: translateY(-3px); border-color: #D4AF37; }
+
+        .toggle-btn {
+            width: 36px; height: 36px;
+            border-radius: 10px;
+            background: #EAE0D0;
+            color: #7A1A1A;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+        }
+        .dark .toggle-btn { background: #2F2F2F; color: #D4AF37; }
+        .toggle-btn:hover { background: #B22222; color: #FFFFFF; }
+        .dark .toggle-btn:hover { background: #D4AF37; color: #1E1E1E; }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            height: 26px;
+            line-height: 1;
+            white-space: nowrap;
+        }
+        .status-active { background: #E8F5E9; color: #2E7D32; }
+        .status-pending { background: #FFF3E0; color: #EF6C00; }
+        .status-completed { background: #E3F2FD; color: #1E4A76; }
+        .status-review { background: #F3E5F5; color: #6A1B9A; }
+        .status-urgent { background: #FFEBEE; color: #C62828; }
+        .status-approved { background: #E8F5E9; color: #1B5E20; }
+        .status-upcoming { background: #E3F2FD; color: #1E4A76; }
+        .dark .status-active { background: #1B5E20; color: #A5D6A7; }
+        .dark .status-pending { background: #E65100; color: #FFCC80; }
+        .dark .status-completed { background: #01579B; color: #81D4FA; }
+        .dark .status-review { background: #4A148C; color: #CE93D8; }
+        .dark .status-urgent { background: #B71C1C; color: #EF9A9A; }
+        .dark .status-approved { background: #1B5E20; color: #A5D6A7; }
+        .dark .status-upcoming { background: #01579B; color: #81D4FA; }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 16px;
+            border: 1.5px solid #EAE0D0;
+            background: #FDF8F0;
+            transition: all 0.3s;
+            color: #1E1E1E;
+        }
+        .dark .form-input { background: #1E1E1E; border-color: #2F2F2F; color: #EDE4D8; }
+        .form-input:focus { outline: none; border-color: #D4AF37; box-shadow: 0 0 0 4px rgba(212,175,55,0.15); }
+        .form-label { display: block; font-weight: 500; font-size: 0.9rem; margin-bottom: 0.4rem; color: #3D352E; }
+        .dark .form-label { color: #CEC3BA; }
+
+        .page-content.hidden { display: none; }
+
+        .progress-bar {
+            height: 8px;
+            background: #EAE0D0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .dark .progress-bar { background: #2F2F2F; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, #D4AF37, #B22222); border-radius: 10px; transition: width 0.5s ease; }
+
+        /* Belt progression visual */
+        .belt-progress-track {
+            position: relative;
+            height: 8px;
+            background: #EAE0D0;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        .dark .belt-progress-track { background: #2F2F2F; }
+        .belt-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #D4AF37, #B22222);
+            border-radius: 6px;
+            transition: width 0.6s ease;
+        }
+
+        /* RTL support */
+        [dir="rtl"] .sidebar {
+            left: auto;
+            right: 0;
+            border-right: none;
+            border-left: 1px solid #EAE0D0;
+        }
+        .dark[dir="rtl"] .sidebar { border-left-color: #2F2F2F; }
+        @media (max-width: 768px) {
+            [dir="rtl"] .sidebar { transform: translateX(100%); }
+            [dir="rtl"] .sidebar.open { transform: translateX(0); }
+        }
+        [dir="rtl"] .main-content {
+            margin-left: 0;
+            margin-right: 280px;
+        }
+        @media (max-width: 768px) {
+            [dir="rtl"] .main-content { margin-right: 0; }
+        }
+        [dir="rtl"] .top-header .border-l {
+            border-left-width: 0 !important;
+            border-right-width: 1px !important;
+            padding-left: 0 !important;
+            padding-right: 1rem !important;
+        }
+        .dark[dir="rtl"] .top-header .border-l { border-right-color: #2F2F2F; }
+        [dir="rtl"] .sidebar-item i {
+            margin-right: 0;
+            margin-left: 0.75rem;
+        }
+        [dir="rtl"] .text-left { text-align: right !important; }
+        [dir="rtl"] .text-right { text-align: left !important; }
+    </style>
+</head>
+<body>
+
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+        <div class="flex items-center gap-3">
+            <button id="menuToggle" class="toggle-btn"><i class="fas fa-bars"></i></button>
+            <a href="index.html" class="flex items-center gap-2 group shrink-0">
+                <div class="w-10 h-10 bg-dojo-red flex items-center justify-center rounded-xl shadow-sm shrink-0">
+                    <i class="fas fa-fist-raised text-white text-lg"></i>
+                </div>
+                <span class="text-lg font-display font-extrabold text-dojo-red dark:text-dojo-red">Little Warriors</span>
+            </a>
+        </div>
+        <div class="flex gap-2">
+            <button id="theme-toggle-mobile" class="toggle-btn"><i class="fas fa-moon"></i><i class="fas fa-sun" style="display:none"></i></button>
+            <button id="rtl-toggle-mobile" class="toggle-btn"><i class="fas fa-exchange-alt"></i></button>
+        </div>
+    </div>
+
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="p-5 border-b border-dojo-sand dark:border-[#2F2F2F]">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 bg-dojo-red flex items-center justify-center rounded-xl shadow-sm shrink-0">
+                    <i class="fas fa-fist-raised text-white text-lg"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-display font-extrabold text-dojo-red dark:text-dojo-red tracking-tight">Little Warriors</span>
+                    <p class="text-xs text-dojo-muted dark:text-[#A89F94]">Instructor Portal</p>
+                </div>
+            </a>
+        </div>
+        <nav class="py-4">
+            <div class="sidebar-item active" data-page="dashboard"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></div>
+            <div class="sidebar-item" data-page="students"><i class="fas fa-users"></i><span>Students</span></div>
+            <div class="sidebar-item" data-page="classes"><i class="fas fa-calendar-alt"></i><span>Class Schedule</span></div>
+            <div class="sidebar-item" data-page="attendance"><i class="fas fa-clipboard-check"></i><span>Take Attendance</span></div>
+            <div class="sidebar-item" data-page="testing"><i class="fas fa-medal"></i><span>Belt Testing</span></div>
+            <div class="sidebar-item" data-page="notes"><i class="fas fa-pen-fancy"></i><span>Progress Notes</span></div>
+            <div class="sidebar-item" data-page="messages"><i class="fas fa-comments"></i><span>Parent Messages</span></div>
+        </nav>
+        <div class="absolute bottom-0 left-0 right-0 p-4 border-t border-dojo-sand dark:border-[#2F2F2F]">
+            <a href="login.html" class="flex items-center justify-center gap-2 w-full p-2.5 rounded-xl bg-dojo-sand/60 hover:bg-dojo-red transition font-semibold text-sm text-dojo-ink dark:text-white">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="top-header flex justify-between items-center flex-wrap gap-3">
+            <div>
+                <h1 class="text-2xl font-display font-bold" id="page-title">Dashboard</h1>
+                <p class="text-sm text-dojo-muted dark:text-[#A89F94]" id="page-subtitle">Welcome back, Sensei Marcus</p>
+            </div>
+            <div class="hidden lg:flex items-center gap-4">
+                <button id="theme-toggle" class="w-10 h-10 rounded-full bg-white dark:bg-[#1E1E1E] border border-dojo-sand dark:border-[#2F2F2F] flex items-center justify-center text-dojo-ink dark:text-white hover:bg-dojo-gold-light dark:hover:bg-[#2F2F2F] transition shadow-sm">
+                    <i class="fas fa-moon dark:hidden"></i>
+                    <i class="fas fa-sun hidden dark:inline"></i>
+                </button>
+                <button id="rtl-toggle" class="w-10 h-10 rounded-full bg-white dark:bg-[#1E1E1E] border border-dojo-sand dark:border-[#2F2F2F] flex items-center justify-center text-dojo-ink dark:text-white hover:bg-dojo-gold-light dark:hover:bg-[#2F2F2F] transition shadow-sm font-bold text-base">
+                    <i class="fas fa-exchange-alt"></i>
+                </button>
+                <div class="flex items-center gap-3 border-l border-dojo-sand dark:border-[#2F2F2F] pl-4">
+                    <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-dojo-gold shadow-sm shrink-0 bg-dojo-gold-light flex items-center justify-center">
+                        <i class="fas fa-user-shield text-dojo-red"></i>
+                    </div>
+                    <div class="text-left hidden lg:block">
+                        <p class="text-sm font-bold text-dojo-ink dark:text-white leading-tight">Sensei Marcus</p>
+                        <p class="text-[10px] text-dojo-muted dark:text-[#A89F94]">Head Instructor</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== DASHBOARD ========== -->
+        <div id="page-dashboard" class="page-content">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                <div class="stat-card">
+                    <div class="flex justify-between">
+                        <div>
+                            <p class="text-xs text-dojo-muted dark:text-[#A89F94] mb-1">Active Students</p>
+                            <p class="text-2xl font-bold text-dojo-ink dark:text-white">87</p>
+                        </div>
+                        <div class="w-10 h-10 bg-dojo-gold-light rounded-full flex items-center justify-center"><i class="fas fa-users text-dojo-red"></i></div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="flex justify-between">
+                        <div>
+                            <p class="text-xs text-dojo-muted dark:text-[#A89F94] mb-1">Classes Today</p>
+                            <p class="text-2xl font-bold text-dojo-ink dark:text-white">5</p>
+                        </div>
+                        <div class="w-10 h-10 bg-dojo-gold-light rounded-full flex items-center justify-center"><i class="fas fa-calendar-alt text-dojo-red"></i></div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="flex justify-between">
+                        <div>
+                            <p class="text-xs text-dojo-muted dark:text-[#A89F94] mb-1">Testing This Month</p>
+                            <p class="text-2xl font-bold text-dojo-ink dark:text-white">14</p>
+                        </div>
+                        <div class="w-10 h-10 bg-dojo-gold-light rounded-full flex items-center justify-center"><i class="fas fa-medal text-dojo-red"></i></div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="flex justify-between">
+                        <div>
+                            <p class="text-xs text-dojo-muted dark:text-[#A89F94] mb-1">Avg. Attendance</p>
+                            <p class="text-2xl font-bold text-dojo-ink dark:text-white">92%</p>
+                        </div>
+                        <div class="w-10 h-10 bg-dojo-gold-light rounded-full flex items-center justify-center"><i class="fas fa-chart-line text-dojo-red"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="stat-card">
+                    <h3 class="font-display font-bold text-lg mb-3">Recent Activity</h3>
+                    <div class="space-y-3">
+                        <div class="flex gap-3 pb-2 border-b border-dojo-sand dark:border-[#2F2F2F]">
+                            <i class="fas fa-user-plus text-dojo-red mt-1"></i>
+                            <div><p class="text-sm font-medium">New student enrolled: Aiden Park (age 6)</p><p class="text-xs text-dojo-muted dark:text-[#A89F94]">Today, 10:30 AM</p></div>
+                        </div>
+                        <div class="flex gap-3 pb-2 border-b border-dojo-sand dark:border-[#2F2F2F]">
+                            <i class="fas fa-check text-dojo-red mt-1"></i>
+                            <div><p class="text-sm font-medium">Emma Chen passed green belt stripe test</p><p class="text-xs text-dojo-muted dark:text-[#A89F94]">Yesterday, 4:15 PM</p></div>
+                        </div>
+                        <div class="flex gap-3">
+                            <i class="fas fa-comment text-dojo-red mt-1"></i>
+                            <div><p class="text-sm font-medium">New parent message from Sarah Chen</p><p class="text-xs text-dojo-muted dark:text-[#A89F94]">Yesterday, 2:00 PM</p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <h3 class="font-display font-bold text-lg mb-3">Quick Actions</h3>
+                    <div class="space-y-3">
+                        <button data-nav="attendance" class="w-full text-left px-4 py-2 bg-dojo-gold-light dark:bg-[#2F2F2F]/50 text-dojo-ink dark:text-white rounded-xl hover:bg-dojo-gold/30 dark:hover:bg-dojo-gold/20 transition flex items-center gap-3">
+                            <i class="fas fa-clipboard-check text-dojo-red"></i><span>Take Attendance</span>
+                        </button>
+                        <button data-nav="notes" class="w-full text-left px-4 py-2 bg-dojo-gold-light dark:bg-[#2F2F2F]/50 text-dojo-ink dark:text-white rounded-xl hover:bg-dojo-gold/30 dark:hover:bg-dojo-gold/20 transition flex items-center gap-3">
+                            <i class="fas fa-pen-fancy text-dojo-red"></i><span>Write Progress Notes</span>
+                        </button>
+                        <button data-nav="testing" class="w-full text-left px-4 py-2 bg-dojo-gold-light dark:bg-[#2F2F2F]/50 text-dojo-ink dark:text-white rounded-xl hover:bg-dojo-gold/30 dark:hover:bg-dojo-gold/20 transition flex items-center gap-3">
+                            <i class="fas fa-medal text-dojo-red"></i><span>Review Belt Testing</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Today's Schedule -->
+            <div class="card-design p-6 mt-6">
+                <h3 class="font-display font-bold text-lg mb-4">Today's Classes</h3>
+                <div class="space-y-3">
+                    <div class="flex items-center gap-4 p-4 rounded-xl bg-dojo-parchment dark:bg-[#1E1E1E]">
+                        <div class="text-center shrink-0">
+                            <p class="text-sm font-bold text-dojo-red dark:text-dojo-gold">4:00 PM</p>
+                            <p class="text-[10px] text-dojo-muted dark:text-[#A89F94]">45 min</p>
+                        </div>
+                        <div class="flex-1">
+                            <p class="font-bold text-dojo-ink dark:text-white">Little Ninjas (4–6)</p>
+                            <p class="text-xs text-dojo-muted dark:text-[#A89F94]">Coach Aiko · 12 students enrolled</p>
+                        </div>
+                        <span class="status-badge status-upcoming">Upcoming</span>
+                    </div>
+                    <div class="flex items-center gap-4 p-4 rounded-xl bg-dojo-parchment dark:bg-[#1E1E1E]">
+                        <div class="text-center shrink-0">
+                            <p class="text-sm font-bold text-dojo-red dark:text-dojo-gold">5:00 PM</p>
+                            <p class="text-[10px] text-dojo-muted dark:text-[#A89F94]">60 min</p>
+                        </div>
+                        <div class="flex-1">
+                            <p class="font-bold text-dojo-ink dark:text-white">Little Tigers (7–9)</p>
+                            <p class="text-xs text-dojo-muted dark:text-[#A89F94]">Coach Elena · 18 students enrolled</p>
+                        </div>
+                        <span class="status-badge status-upcoming">Upcoming</span>
+                    </div>
+                    <div class="flex items-center gap-4 p-4 rounded-xl bg-dojo-parchment dark:bg-[#1E1E1E]">
+                        <div class="text-center shrink-0">
+                            <p class="text-sm font-bold text-dojo-red dark:text-dojo-gold">6:15 PM</p>
+                            <p class="text-[10px] text-dojo-muted dark:text-[#A89F94]">60 min</p>
+                        </div>
+                        <div class="flex-1">
+                            <p class="font-bold text-dojo-ink dark:text-white">Junior Warriors (10–14)</p>
+                            <p class="text-xs text-dojo-muted dark:text-[#A89F94]">Sensei Marcus · 15 students enrolled</p>
+                        </div>
+                        <span class="status-badge status-upcoming">Upcoming</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== STUDENTS ========== -->
+        <div id="page-students" class="page-content hidden">
+            <div class="card-design p-6">
+                <div class="flex justify-between items-center mb-4 flex-wrap gap-3">
+                    <h3 class="font-display font-bold text-2xl">Students</h3>
+                    
+                </div>
+                <p class="text-sm text-dojo-muted dark:text-[#A89F94] mb-6">Manage enrollment, belt levels, and student profiles.</p>
+
+                <div class="space-y-3">
+                    <div class="client-card card-design p-4 flex flex-wrap items-center justify-between gap-3">
+                        <div class="flex items-center gap-3">
+                            <img src="https://i.pravatar.cc/100?img=32" alt="Emma" class="w-10 h-10 rounded-full border-2 border-dojo-gold object-cover">
+                            <div>
+                                <p class="font-bold text-dojo-ink dark:text-white">Emma Chen</p>
+                                <p class="text-xs text-dojo-muted dark:text-[#A89F94]">Age 7 · Little Tigers · Green Belt</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between sm:justify-start gap-2 sm:gap-4 w-full sm:w-auto pt-2 sm:pt-0 border-t sm:border-t-0 border-dojo-sand/40 dark:border-[#2F2F2F]/40">
+                            <span class="status-badge status-active whitespace-nowrap">Active</span>
+                            <span class="text-xs sm:text-sm text-dojo-muted dark:text-[#A89F94] whitespace-nowrap">96% attend.</span>
+                            <button class="text-xs sm:text-sm font-semibold text-dojo-red dark:text-dojo-gold hover:text-dojo-red-dark whitespace-nowrap">View →</button>
+                        </div>
+                    </div>
+                    <div class="client-card card-design p-4 flex flex-wrap items-center justify-between gap-3">
+                        <div class="flex items-center gap-3">
+                            <img src="https://i.pravatar.cc/100?img=12" alt="Liam" class="w-10 h-10 rounded-full border-2 border-dojo-gold object-cover">
+                            <div>
+                                <p class="font-bold text-dojo-ink dark:text-white">Liam Chen</p>
+                                <p class="text-xs text-dojo-muted dark:text-[#A89F94]">Age 5 · Little Ninjas · Yellow Belt</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between sm:justify-start gap-2 sm:gap-4 w-full sm:w-auto pt-2 sm:pt-0 border-t sm:border-t-0 border-dojo-sand/40 dark:border-[#2F2F2F]/40">
+                            <span class="status-badge status-active whitespace-nowrap">Active</span>
+                            <span class="text-xs sm:text-sm text-dojo-muted dark:text-[#A89F94] whitespace-nowrap">88% attend.</span>
+                            <button class="text-xs sm:text-sm font-semibold text-dojo-red dark:text-dojo-gold hover:text-dojo-red-dark whitespace-nowrap">View →</button>
+                        </div>
+                    </div>
+                    <div class="client-card card-design p-4 flex flex-wrap items-center justify-between gap-3">
+                        <div class="flex items-center gap-3">
+                            <img src="https://i.pravatar.cc/100?img=45" alt="Aiden" class="w-10 h-10 rounded-full border-2 border-dojo-gold object-cover">
+                            <div>
+                                <p class="font-bold text-dojo-ink dark:text-white">Aiden Park</p>
+                                <p class="text-xs text-dojo-muted dark:text-[#A89F94]">Age 6 · Little Ninjas · White Belt</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between sm:justify-start gap-2 sm:gap-4 w-full sm:w-auto pt-2 sm:pt-0 border-t sm:border-t-0 border-dojo-sand/40 dark:border-[#2F2F2F]/40">
+                            <span class="status-badge status-pending whitespace-nowrap">New</span>
+                            <span class="text-xs sm:text-sm text-dojo-muted dark:text-[#A89F94] whitespace-nowrap">Just enrolled</span>
+                            <button class="text-xs sm:text-sm font-semibold text-dojo-red dark:text-dojo-gold hover:text-dojo-red-dark whitespace-nowrap">View →</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== CLASS SCHEDULE ========== -->
+        <div id="page-classes" class="page-content hidden">
+            <div class="card-design p-6">
+                <h3 class="font-display font-bold text-2xl mb-4">Class Schedule</h3>
+                <p class="text-sm text-dojo-muted dark:text-[#A89F94] mb-6">Manage weekly class schedule and assign instructors.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-6">
+                    <div class="card-design p-5 flex flex-col h-full">
+                        <div class="flex-1">
+                            <div class="w-12 h-12 rounded-xl bg-dojo-gold-light flex items-center justify-center mb-3">
+                                <i class="fas fa-baby text-dojo-red text-xl"></i>
+                            </div>
+                            <h4 class="font-display font-bold text-lg mb-1 dark:text-white">Little Ninjas</h4>
+                            <p class="text-xs text-dojo-red dark:text-dojo-gold font-semibold mb-3">Ages 4–6 · Mon/Wed/Fri · 4:00 PM</p>
+                            <p class="text-sm text-dojo-muted dark:text-[#A89F94] mb-3">12 students · Coach Aiko</p>
+                        </div>
+                        <div class="mt-auto pt-3">
+                            <span class="status-badge status-active">Active</span>
+                        </div>
+                    </div>
+                    <div class="card-design p-5 flex flex-col h-full">
+                        <div class="flex-1">
+                            <div class="w-12 h-12 rounded-xl bg-dojo-gold-light flex items-center justify-center mb-3">
+                                <i class="fas fa-child text-dojo-red text-xl"></i>
+                            </div>
+                            <h4 class="font-display font-bold text-lg mb-1 dark:text-white">Little Tigers</h4>
+                            <p class="text-xs text-dojo-red dark:text-dojo-gold font-semibold mb-3">Ages 7–9 · Tue/Thu · 5:00 PM</p>
+                            <p class="text-sm text-dojo-muted dark:text-[#A89F94] mb-3">18 students · Coach Elena</p>
+                        </div>
+                        <div class="mt-auto pt-3">
+                            <span class="status-badge status-active">Active</span>
+                        </div>
+                    </div>
+                    <div class="card-design p-5 flex flex-col h-full">
+                        <div class="flex-1">
+                            <div class="w-12 h-12 rounded-xl bg-dojo-gold-light flex items-center justify-center mb-3">
+                                <i class="fas fa-user-ninja text-dojo-red text-xl"></i>
+                            </div>
+                            <h4 class="font-display font-bold text-lg mb-1 dark:text-white">Junior Warriors</h4>
+                            <p class="text-xs text-dojo-red dark:text-dojo-gold font-semibold mb-3">Ages 10–14 · Mon/Wed · 6:15 PM</p>
+                            <p class="text-sm text-dojo-muted dark:text-[#A89F94] mb-3">15 students · Sensei Marcus</p>
+                        </div>
+                        <div class="mt-auto pt-3">
+                            <span class="status-badge status-active">Active</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn-outline-design w-full py-3 font-semibold inline-flex items-center justify-center gap-2">
+                    <i class="fas fa-plus"></i> Add New Class
+                </button>
+            </div>
+        </div>
+
+        <!-- ========== TAKE ATTENDANCE ========== -->
+        <div id="page-attendance" class="page-content hidden">
+            <div class="card-design p-6">
+                <h3 class="font-display font-bold text-2xl mb-4">Take Attendance</h3>
+                <p class="text-sm text-dojo-muted dark:text-[#A89F94] mb-6">Mark attendance for today's classes. Select a class to begin.</p>
+
+                <div class="mb-6">
+                    <label class="form-label">Select Class</label>
+                    <select class="form-input">
+                        <option>Little Ninjas (4–6) · 4:00 PM</option>
+                        <option>Little Tigers (7–9) · 5:00 PM</option>
+                        <option>Junior Warriors (10–14) · 6:15 PM</option>
+                    </select>
+                </div>
+
+                <div class="space-y-2">
+                    <div class="flex items-center justify-between p-3 rounded-xl bg-dojo-parchment dark:bg-[#1E1E1E]">
+                        <div class="flex items-center gap-3">
+                            <img src="https://i.pravatar.cc/100?img=12" class="w-10 h-10 rounded-full border-2 border-dojo-gold object-cover">
+                            <div><p class="font-bold text-sm text-dojo-ink dark:text-white">Liam Chen</p><p class="text-xs text-dojo-muted dark:text-[#A89F94]">Yellow Belt</p></div>
+                        </div>
+                        <div class="flex gap-2">
+                            <button class="px-3 py-1.5 rounded-full text-xs font-semibold bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">Present</button>
+                            <button class="px-3 py-1.5 rounded-full text-xs font-semibold bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200">Absent</button>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between p-3 rounded-xl bg-dojo-parchment dark:bg-[#1E1E1E]">
+                        <div class="flex items-center gap-3">
+                            <img src="https://i.pravatar.cc/100?img=45" class="w-10 h-10 rounded-full border-2 border-dojo-gold object-cover">
+                            <div><p class="font-bold text-sm text-dojo-ink dark:text-white">Aiden Park</p><p class="text-xs text-dojo-muted dark:text-[#A89F94]">White Belt</p></div>
+                        </div>
+                        <div class="flex gap-2">
+                            <button class="px-3 py-1.5 rounded-full text-xs font-semibold bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">Present</button>
+                            <button class="px-3 py-1.5 rounded-full text-xs font-semibold bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200">Absent</button>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between p-3 rounded-xl bg-dojo-parchment dark:bg-[#1E1E1E]">
+                        <div class="flex items-center gap-3">
+                            <img src="https://i.pravatar.cc/100?img=25" class="w-10 h-10 rounded-full border-2 border-dojo-gold object-cover">
+                            <div><p class="font-bold text-sm text-dojo-ink dark:text-white">Mia Rodriguez</p><p class="text-xs text-dojo-muted dark:text-[#A89F94]">Yellow Belt</p></div>
+                        </div>
+                        <div class="flex gap-2">
+                            <button class="px-3 py-1.5 rounded-full text-xs font-semibold bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">Present</button>
+                            <button class="px-3 py-1.5 rounded-full text-xs font-semibold bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200">Absent</button>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn-primary-design w-full mt-6 py-3 text-lg font-bold inline-flex items-center justify-center gap-2">
+                    <i class="fas fa-save"></i> Save Attendance
+                </button>
+            </div>
+        </div>
+
+        <!-- ========== BELT TESTING ========== -->
+        <div id="page-testing" class="page-content hidden">
+            <div class="card-design p-6">
+                <h3 class="font-display font-bold text-2xl mb-4">Belt Testing Review</h3>
+                <p class="text-sm text-dojo-muted dark:text-[#A89F94] mb-6">Review and approve students who are ready for belt testing.</p>
+
+                <div class="space-y-4">
+                    <div class="card-design p-5">
+                        <div class="flex flex-wrap justify-between items-start gap-3 mb-3">
+                            <div class="flex items-center gap-3">
+                                <img src="https://i.pravatar.cc/100?img=32" class="w-12 h-12 rounded-full border-2 border-dojo-gold object-cover">
+                                <div>
+                                    <p class="font-bold text-lg text-dojo-ink dark:text-white">Emma Chen</p>
+                                    <p class="text-sm text-dojo-muted dark:text-[#A89F94]">Green Belt → Green Belt Stripe</p>
+                                </div>
+                            </div>
+                            <span class="status-badge status-pending">Ready to Test</span>
+                        </div>
+                        <div class="mb-3">
+                            <div class="flex justify-between text-sm mb-1"><span class="text-dojo-muted dark:text-[#A89F94]">Skills Readiness</span><span class="font-bold text-dojo-red dark:text-dojo-gold">92%</span></div>
+                            <div class="belt-progress-track"><div class="belt-progress-fill" style="width:92%"></div></div>
+                        </div>
+                        <div class="flex gap-2">
+                            <button class="btn-primary-design px-4 py-1.5 text-sm">Approve for Testing</button>
+                            <button class="btn-outline-design px-4 py-1.5 text-sm">Add Note</button>
+                        </div>
+                    </div>
+                    <div class="card-design p-5">
+                        <div class="flex flex-wrap justify-between items-start gap-3 mb-3">
+                            <div class="flex items-center gap-3">
+                                <img src="https://i.pravatar.cc/100?img=12" class="w-12 h-12 rounded-full border-2 border-dojo-gold object-cover">
+                                <div>
+                                    <p class="font-bold text-lg text-dojo-ink dark:text-white">Liam Chen</p>
+                                    <p class="text-sm text-dojo-muted dark:text-[#A89F94]">Yellow Belt → Orange Belt</p>
+                                </div>
+                            </div>
+                            <span class="status-badge status-review">In Review</span>
+                        </div>
+                        <div class="mb-3">
+                            <div class="flex justify-between text-sm mb-1"><span class="text-dojo-muted dark:text-[#A89F94]">Skills Readiness</span><span class="font-bold text-dojo-red dark:text-dojo-gold">78%</span></div>
+                            <div class="belt-progress-track"><div class="belt-progress-fill" style="width:78%"></div></div>
+                        </div>
+                        <div class="flex gap-2">
+                            <button class="btn-primary-design px-4 py-1.5 text-sm">Approve for Testing</button>
+                            <button class="btn-outline-design px-4 py-1.5 text-sm">Add Note</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== PROGRESS NOTES ========== -->
+        <div id="page-notes" class="page-content hidden">
+            <div class="card-design p-6">
+                <h3 class="font-display font-bold text-2xl mb-4">Progress Notes</h3>
+                <p class="text-sm text-dojo-muted dark:text-[#A89F94] mb-6">Write and send progress notes to parents.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <div>
+                        <label class="form-label">Select Student</label>
+                        <select class="form-input">
+                            <option>Emma Chen · Little Tigers</option>
+                            <option>Liam Chen · Little Ninjas</option>
+                            <option>Aiden Park · Little Ninjas</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="form-label">Note Type</label>
+                        <select class="form-input">
+                            <option>General Progress</option>
+                            <option>Belt Readiness</option>
+                            <option>Behavior Note</option>
+                            <option>Celebration 🎉</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="form-label">Note</label>
+                    <textarea class="form-input" rows="4" placeholder="Write a note to the parent...">Emma showed excellent focus during kata practice today! Her stances are getting stronger and she's ready for her green belt stripe test.</textarea>
+                </div>
+
+                <button class="btn-primary-design w-full mt-6 py-3 text-lg font-bold inline-flex items-center justify-center gap-2">
+                    <i class="fas fa-paper-plane"></i> Send to Parent
+                </button>
+
+                <h4 class="font-display font-bold text-lg mt-8 mb-3 dark:text-white">Recent Notes Sent</h4>
+                <div class="space-y-3">
+                    <div class="p-4 bg-dojo-parchment dark:bg-[#1E1E1E] rounded-xl">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="font-bold text-sm text-dojo-ink dark:text-white">Emma Chen · Belt Readiness</p>
+                                <p class="text-sm mt-1 text-dojo-muted dark:text-[#A89F94]">Ready for her green belt stripe test. Keep practicing stances at home!</p>
+                            </div>
+                            <span class="text-xs text-dojo-muted dark:text-[#A89F94] whitespace-nowrap ml-3">2 days ago</span>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-dojo-parchment dark:bg-[#1E1E1E] rounded-xl">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="font-bold text-sm text-dojo-ink dark:text-white">Liam Chen · Celebration 🎉</p>
+                                <p class="text-sm mt-1 text-dojo-muted dark:text-[#A89F94]">Liam helped a new student feel welcome today. Great empathy!</p>
+                            </div>
+                            <span class="text-xs text-dojo-muted dark:text-[#A89F94] whitespace-nowrap ml-3">Yesterday</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== PARENT MESSAGES ========== -->
+        <div id="page-messages" class="page-content hidden">
+            <div class="card-design p-6">
+                <h3 class="font-display font-bold text-2xl mb-4">Parent Messages</h3>
+                <p class="text-sm text-dojo-muted dark:text-[#A89F94] mb-6">Respond to messages from parents.</p>
+
+                <div class="space-y-4">
+                    <div class="p-4 bg-dojo-parchment dark:bg-[#1E1E1E] rounded-xl">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="font-bold text-dojo-ink dark:text-white">Sarah Chen <span class="text-xs font-normal text-dojo-muted dark:text-[#A89F94]">Parent of Emma & Liam</span></p>
+                                <p class="text-sm mt-1 text-dojo-ink dark:text-[#EDE4D8]">Hi Sensei! Emma is so excited about her stripe test. Should we be practicing anything specific at home?</p>
+                            </div>
+                            <span class="text-xs text-dojo-muted dark:text-[#A89F94] whitespace-nowrap ml-3">Today, 11:00 AM</span>
+                        </div>
+                        <div class="mt-2 flex gap-2">
+                            <button class="btn-primary-design px-4 py-1 text-sm">Reply</button>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-white dark:bg-[#121212] rounded-xl border border-dojo-sand dark:border-[#2F2F2F]">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="font-bold text-dojo-ink dark:text-white">Sensei Marcus <span class="text-xs font-normal text-dojo-muted dark:text-[#A89F94]">You</span></p>
+                                <p class="text-sm mt-1 text-dojo-ink dark:text-[#EDE4D8]">Hi Sarah! Just 5 minutes of stance practice daily would be perfect. She's doing great!</p>
+                            </div>
+                            <span class="text-xs text-dojo-muted dark:text-[#A89F94] whitespace-nowrap ml-3">Yesterday, 6:30 PM</span>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-dojo-parchment dark:bg-[#1E1E1E] rounded-xl">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="font-bold text-dojo-ink dark:text-white">David Kim <span class="text-xs font-normal text-dojo-muted dark:text-[#A89F94]">Parent of Ethan</span></p>
+                                <p class="text-sm mt-1 text-dojo-ink dark:text-[#EDE4D8]">Sensei, Ethan will miss Thursday's class due to a school event. Can we schedule a make-up session?</p>
+                            </div>
+                            <span class="text-xs text-dojo-muted dark:text-[#A89F94] whitespace-nowrap ml-3">Yesterday, 2:00 PM</span>
+                        </div>
+                        <div class="mt-2 flex gap-2">
+                            <button class="btn-primary-design px-4 py-1 text-sm">Reply</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6">
+                    <label class="form-label">Send a Message</label>
+                    <div class="flex gap-3">
+                        <input type="text" class="form-input flex-1" placeholder="Type your message..." />
+                        <button class="btn-primary-design px-6 py-2"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // RTL Toggle
+            const rtlToggle = document.getElementById('rtl-toggle');
+            const rtlToggleMobile = document.getElementById('rtl-toggle-mobile');
+            function setRTL(isRTL) {
+                if (isRTL) {
+                    document.documentElement.setAttribute('dir', 'rtl');
+                    localStorage.setItem('dir', 'rtl');
+                } else {
+                    document.documentElement.setAttribute('dir', 'ltr');
+                    localStorage.setItem('dir', 'ltr');
+                }
+            }
+            const savedDir = localStorage.getItem('dir');
+            setRTL(savedDir === 'rtl');
+            if (rtlToggle) rtlToggle.addEventListener('click', () => setRTL(document.documentElement.getAttribute('dir') !== 'rtl'));
+            if (rtlToggleMobile) rtlToggleMobile.addEventListener('click', () => setRTL(document.documentElement.getAttribute('dir') !== 'rtl'));
+
+            // Theme Toggle
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+            function setTheme(isDark) {
+                if (isDark) document.documentElement.classList.add('dark');
+                else document.documentElement.classList.remove('dark');
+                [themeToggle, themeToggleMobile].forEach(btn => {
+                    if (btn) {
+                        let moon = btn.querySelector('.fa-moon'), sun = btn.querySelector('.fa-sun');
+                        if (isDark) { moon?.classList.add('hidden'); sun?.classList.remove('hidden'); }
+                        else { moon?.classList.remove('hidden'); sun?.classList.add('hidden'); }
+                    }
+                });
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            }
+            const savedTheme = localStorage.getItem('theme');
+            setTheme(savedTheme === 'dark');
+            if (themeToggle) themeToggle.addEventListener('click', () => setTheme(!document.documentElement.classList.contains('dark')));
+            if (themeToggleMobile) themeToggleMobile.addEventListener('click', () => setTheme(!document.documentElement.classList.contains('dark')));
+
+            // Mobile Sidebar
+            const menuToggle = document.getElementById('menuToggle');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            function closeSidebar() { sidebar.classList.remove('open'); overlay.classList.remove('open'); }
+            function openSidebar() { sidebar.classList.add('open'); overlay.classList.add('open'); }
+            if (menuToggle) menuToggle.addEventListener('click', (e) => { e.stopPropagation(); sidebar.classList.contains('open') ? closeSidebar() : openSidebar(); });
+            if (overlay) overlay.addEventListener('click', closeSidebar);
+            window.addEventListener('resize', () => { if (window.innerWidth > 768 && sidebar.classList.contains('open')) closeSidebar(); });
+
+            // Navigation
+            const sidebarItems = document.querySelectorAll('.sidebar-item');
+            const pages = document.querySelectorAll('.page-content');
+            const pageTitle = document.getElementById('page-title');
+            const pageSubtitle = document.getElementById('page-subtitle');
+            const titles = {
+                dashboard: { title: 'Dashboard', subtitle: 'Welcome back, Sensei Marcus' },
+                students: { title: 'Students', subtitle: 'Manage your students' },
+                classes: { title: 'Class Schedule', subtitle: 'Weekly class overview' },
+                attendance: { title: 'Take Attendance', subtitle: 'Mark today\'s attendance' },
+                testing: { title: 'Belt Testing', subtitle: 'Review belt readiness' },
+                notes: { title: 'Progress Notes', subtitle: 'Write notes to parents' },
+                messages: { title: 'Parent Messages', subtitle: 'Respond to parents' }
+            };
+            function navigateTo(page) {
+                sidebarItems.forEach(i => i.classList.remove('active'));
+                document.querySelector(`.sidebar-item[data-page="${page}"]`)?.classList.add('active');
+                pages.forEach(p => p.classList.add('hidden'));
+                document.getElementById(`page-${page}`)?.classList.remove('hidden');
+                if (titles[page]) { pageTitle.textContent = titles[page].title; pageSubtitle.textContent = titles[page].subtitle; }
+                closeSidebar();
+            }
+            sidebarItems.forEach(item => { item.addEventListener('click', () => { navigateTo(item.getAttribute('data-page')); }); });
+            document.querySelectorAll('[data-nav]').forEach(btn => { btn.addEventListener('click', () => { navigateTo(btn.getAttribute('data-nav')); }); });
+        });
+    </script>
+</body>
+</html>
