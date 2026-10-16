@@ -275,35 +275,59 @@
             right: 1.1rem;
         }
 
-        /* heritage button — dojo red */
+        /* heritage button / CTA */
         .heritage-btn {
-            background: #B22222;
-            color: white;
-            font-weight: 600;
-            padding: 0.8rem 1.8rem;
-            border-radius: 50px;
-            transition: all 0.3s ease;
+            background-color: #B22222;
+            color: #FFFFFF;
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 0.025em;
+            padding: 0.85rem 1.8rem;
+            border-radius: 8px;
+            border: 1px solid #991B1B;
+            box-shadow: 0 2px 6px rgba(178, 34, 34, 0.25);
+            transition: all 0.25s ease;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             width: 100%;
-            font-size: 1rem;
-            border: none;
             cursor: pointer;
+            text-decoration: none;
+            -webkit-font-smoothing: antialiased;
         }
 
         .dark .heritage-btn {
-            background: #D4AF37;
-            color: #1E1E1E;
+            background-color: #D4AF37;
+            color: #121212;
+            border-color: #B89628;
+            font-weight: 700;
+            box-shadow: 0 2px 6px rgba(212, 175, 55, 0.25);
         }
 
         .heritage-btn:hover {
+            background-color: #991B1B;
+            border-color: #7A1A1A;
+            color: #FFFFFF;
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(178, 34, 34, 0.35);
+            box-shadow: 0 6px 16px rgba(178, 34, 34, 0.35);
         }
 
         .dark .heritage-btn:hover {
-            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.35);
+            background-color: #E2BC3E;
+            border-color: #C49E28;
+            color: #121212;
+            box-shadow: 0 6px 16px rgba(212, 175, 55, 0.4);
+        }
+
+        .heritage-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 1px 4px rgba(178, 34, 34, 0.2);
+        }
+
+        .dark .heritage-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 1px 4px rgba(212, 175, 55, 0.2);
         }
 
         /* social login buttons */
