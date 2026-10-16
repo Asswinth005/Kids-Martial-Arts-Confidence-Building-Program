@@ -549,7 +549,7 @@
   <!-- ========== ABOUT PAGE CONTENT ========== -->
 
   <!-- 1. PAGE HERO -->
-  <section class="relative pt-40 pb-24 md:pt-52 md:pb-32 bg-cover bg-center" style="background-image: url('/assest/b1.jpg');">
+  <section class="relative pt-40 pb-24 md:pt-52 md:pb-32 bg-cover bg-center" style="background-image: url('assest/b1.jpg');">
     <div class="absolute inset-0 hero-overlay"></div>
     <div class="container mx-auto px-6 relative z-10 text-center">
       <span class="inline-block bg-dojo-red/80 backdrop-blur-sm px-5 py-2 mb-6 border-l-4 border-dojo-gold rounded-r-lg text-dojo-gold font-serif tracking-widest text-sm">
@@ -559,9 +559,17 @@
         Where Kids Become <span class="text-dojo-gold">Warriors</span>
       </h1>
       <div class="heritage-line mx-auto my-6"></div>
-      <p class="text-xl md:text-2xl text-dojo-parchment max-w-2xl mx-auto font-body leading-relaxed">
+      <p class="text-xl md:text-2xl text-dojo-parchment max-w-2xl mx-auto font-body leading-relaxed mb-8">
         Since 2010, Little Warriors has been a second home for families — a place where confidence is built one belt at a time.
       </p>
+      <div class="flex flex-wrap justify-center items-center gap-4">
+        <a href="contact.html" class="btn-heritage shadow-xl text-base px-8 py-3.5">
+          Book a Free Trial Class <i class="fas fa-arrow-right ml-2 text-sm"></i>
+        </a>
+        <a href="#warrior-code" class="inline-flex items-center justify-center px-7 py-3.5 rounded-lg border-2 border-white/70 text-white font-body font-bold text-base hover:bg-white hover:text-dojo-ink transition duration-300">
+          The Warrior Code
+        </a>
+      </div>
     </div>
   </section>
 
@@ -572,9 +580,9 @@
       <div class="grid lg:grid-cols-2 gap-16 items-center">
         <div class="relative">
           <div class="grid grid-cols-2 gap-4">
-            <img src="/assest/fa.jpg" alt="Kids training" class="rounded-2xl shadow-xl w-full h-64 object-cover border-4 border-white dark:border-[#2A2A2A] col-span-2">
-            <img src="/assest/f3.jpg" alt="Martial arts kids" class="rounded-2xl shadow-xl w-full h-56 object-cover border-4 border-white dark:border-[#2A2A2A]">
-            <img src="/assest/b3.jpg" alt="Child focusing" class="rounded-2xl shadow-xl w-full h-56 object-cover border-4 border-white dark:border-[#2A2A2A]">
+            <img src="assest/fa.jpg" alt="Kids training" class="rounded-2xl shadow-xl w-full h-64 object-cover border-4 border-white dark:border-[#2A2A2A] col-span-2">
+            <img src="assest/f3.jpg" alt="Martial arts kids" class="rounded-2xl shadow-xl w-full h-56 object-cover border-4 border-white dark:border-[#2A2A2A]">
+            <img src="assest/b3.jpg" alt="Child focusing" class="rounded-2xl shadow-xl w-full h-56 object-cover border-4 border-white dark:border-[#2A2A2A]">
           </div>
           
         </div>
@@ -609,11 +617,11 @@
     </div>
   </section>
 
-  <!-- 3. OUR VALUES – NUMBERED CARD GRID (NEW DESIGN) -->
-  <section class="py-24 bg-white dark:bg-[#121212]">
+  <!-- 3. OUR VALUES – THE WARRIOR CODE -->
+  <section id="warrior-code" class="py-24 bg-white dark:bg-[#121212]">
     <div class="container mx-auto px-6">
       <div class="text-center mb-16">
-        <span class="text-dojo-red dark:text-dojo-gold font-serif text-sm tracking-[0.25em] uppercase">What we stand for</span>
+        <span class="text-dojo-red dark:text-dojo-gold font-serif text-sm tracking-[0.25em] uppercase font-semibold">What we stand for</span>
         <h2 class="text-4xl md:text-5xl font-heading font-bold mt-4 text-dojo-ink dark:text-white">The Warrior <span class="text-dojo-red dark:text-dojo-gold">Code</span></h2>
         <div class="heritage-line mx-auto my-5"></div>
         <p class="text-lg max-w-2xl mx-auto font-body text-dojo-ink/70 dark:text-dojo-parchment/70">
@@ -621,45 +629,64 @@
         </p>
       </div>
       <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
-        <div class="value-card text-center">
-          <div class="value-num">01</div>
-          <div class="w-14 h-14 mx-auto my-4 rounded-full bg-dojo-red/10 dark:bg-dojo-gold/10 flex items-center justify-center">
-            <i class="fas fa-handshake text-dojo-red dark:text-dojo-gold text-2xl"></i>
+        <!-- 01 Respect -->
+        <div class="value-card text-center group flex flex-col justify-between !p-5">
+          <div>
+            <div class="value-num mb-2">01</div>
+            <div class="aspect-[4/3] w-full rounded-xl overflow-hidden mb-4 shadow-sm border border-dojo-gold/20 bg-dojo-sand/20 dark:bg-gray-800">
+              <img src="assest/warrior-respect.jpg" alt="Respect - Bowing and sportsmanship" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <h3 class="text-xl font-heading font-bold mb-2 text-dojo-ink dark:text-white group-hover:text-dojo-red dark:group-hover:text-dojo-gold transition-colors">Respect</h3>
+            <p class="text-sm text-dojo-ink/70 dark:text-dojo-parchment/70 font-body leading-relaxed">For instructors, peers, and self. Every class begins and ends with a bow.</p>
           </div>
-          <h3 class="text-xl font-heading font-bold mb-2 dark:text-white">Respect</h3>
-          <p class="text-sm text-dojo-ink/70 dark:text-dojo-parchment/70 font-body">For instructors, peers, and self. Every class begins and ends with a bow.</p>
         </div>
-        <div class="value-card text-center">
-          <div class="value-num">02</div>
-          <div class="w-14 h-14 mx-auto my-4 rounded-full bg-dojo-red/10 dark:bg-dojo-gold/10 flex items-center justify-center">
-            <i class="fas fa-fire text-dojo-red dark:text-dojo-gold text-2xl"></i>
+
+        <!-- 02 Discipline -->
+        <div class="value-card text-center group flex flex-col justify-between !p-5">
+          <div>
+            <div class="value-num mb-2">02</div>
+            <div class="aspect-[4/3] w-full rounded-xl overflow-hidden mb-4 shadow-sm border border-dojo-gold/20 bg-dojo-sand/20 dark:bg-gray-800">
+              <img src="assest/warrior-discipline.jpg" alt="Discipline - Form practice and focus" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <h3 class="text-xl font-heading font-bold mb-2 text-dojo-ink dark:text-white group-hover:text-dojo-red dark:group-hover:text-dojo-gold transition-colors">Discipline</h3>
+            <p class="text-sm text-dojo-ink/70 dark:text-dojo-parchment/70 font-body leading-relaxed">Consistency over intensity. Small daily habits that build lasting character.</p>
           </div>
-          <h3 class="text-xl font-heading font-bold mb-2 dark:text-white">Discipline</h3>
-          <p class="text-sm text-dojo-ink/70 dark:text-dojo-parchment/70 font-body">Consistency over intensity. Small daily habits that build lasting character.</p>
         </div>
-        <div class="value-card text-center">
-          <div class="value-num">03</div>
-          <div class="w-14 h-14 mx-auto my-4 rounded-full bg-dojo-red/10 dark:bg-dojo-gold/10 flex items-center justify-center">
-            <i class="fas fa-heart text-dojo-red dark:text-dojo-gold text-2xl"></i>
+
+        <!-- 03 Compassion -->
+        <div class="value-card text-center group flex flex-col justify-between !p-5">
+          <div>
+            <div class="value-num mb-2">03</div>
+            <div class="aspect-[4/3] w-full rounded-xl overflow-hidden mb-4 shadow-sm border border-dojo-gold/20 bg-dojo-sand/20 dark:bg-gray-800">
+              <img src="assest/warrior-compassion.jpg" alt="Compassion - Lifting others and celebrating wins" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <h3 class="text-xl font-heading font-bold mb-2 text-dojo-ink dark:text-white group-hover:text-dojo-red dark:group-hover:text-dojo-gold transition-colors">Compassion</h3>
+            <p class="text-sm text-dojo-ink/70 dark:text-dojo-parchment/70 font-body leading-relaxed">Strength is for lifting others. We celebrate every teammate's wins.</p>
           </div>
-          <h3 class="text-xl font-heading font-bold mb-2 dark:text-white">Compassion</h3>
-          <p class="text-sm text-dojo-ink/70 dark:text-dojo-parchment/70 font-body">Strength is for lifting others. We celebrate every teammate's wins.</p>
         </div>
-        <div class="value-card text-center">
-          <div class="value-num">04</div>
-          <div class="w-14 h-14 mx-auto my-4 rounded-full bg-dojo-red/10 dark:bg-dojo-gold/10 flex items-center justify-center">
-            <i class="fas fa-brain text-dojo-red dark:text-dojo-gold text-2xl"></i>
+
+        <!-- 04 Focus -->
+        <div class="value-card text-center group flex flex-col justify-between !p-5">
+          <div>
+            <div class="value-num mb-2">04</div>
+            <div class="aspect-[4/3] w-full rounded-xl overflow-hidden mb-4 shadow-sm border border-dojo-gold/20 bg-dojo-sand/20 dark:bg-gray-800">
+              <img src="assest/warrior-focus.jpg" alt="Focus - Calm minds and sharp bodies" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <h3 class="text-xl font-heading font-bold mb-2 text-dojo-ink dark:text-white group-hover:text-dojo-red dark:group-hover:text-dojo-gold transition-colors">Focus</h3>
+            <p class="text-sm text-dojo-ink/70 dark:text-dojo-parchment/70 font-body leading-relaxed">Calm minds, sharp bodies. Training attention is as important as training muscle.</p>
           </div>
-          <h3 class="text-xl font-heading font-bold mb-2 dark:text-white">Focus</h3>
-          <p class="text-sm text-dojo-ink/70 dark:text-dojo-parchment/70 font-body">Calm minds, sharp bodies. Training attention is as important as training muscle.</p>
         </div>
-        <div class="value-card text-center">
-          <div class="value-num">05</div>
-          <div class="w-14 h-14 mx-auto my-4 rounded-full bg-dojo-red/10 dark:bg-dojo-gold/10 flex items-center justify-center">
-            <i class="fas fa-shield-halved text-dojo-red dark:text-dojo-gold text-2xl"></i>
+
+        <!-- 05 Courage -->
+        <div class="value-card text-center group flex flex-col justify-between !p-5">
+          <div>
+            <div class="value-num mb-2">05</div>
+            <div class="aspect-[4/3] w-full rounded-xl overflow-hidden mb-4 shadow-sm border border-dojo-gold/20 bg-dojo-sand/20 dark:bg-gray-800">
+              <img src="assest/warrior-courage.jpg" alt="Courage - Stepping forward bravely" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <h3 class="text-xl font-heading font-bold mb-2 text-dojo-ink dark:text-white group-hover:text-dojo-red dark:group-hover:text-dojo-gold transition-colors">Courage</h3>
+            <p class="text-sm text-dojo-ink/70 dark:text-dojo-parchment/70 font-body leading-relaxed">Trying again after falling. Speaking up. Stepping forward. That's bravery.</p>
           </div>
-          <h3 class="text-xl font-heading font-bold mb-2 dark:text-white">Courage</h3>
-          <p class="text-sm text-dojo-ink/70 dark:text-dojo-parchment/70 font-body">Trying again after falling. Speaking up. Stepping forward. That's bravery.</p>
         </div>
       </div>
     </div>
@@ -682,7 +709,7 @@
         <!-- Instructor 1 -->
         <div class="instructor-card text-center flex flex-col h-full">
           <div class="overflow-hidden h-56 shrink-0">
-            <img src="/assest/m1.jpg" alt="Sensei Marcus" class="w-full h-full object-cover object-top">
+            <img src="assest/m1.jpg" alt="Sensei Marcus" class="w-full h-full object-cover object-top">
           </div>
           <div class="p-6 flex flex-col flex-1">
             <div class="flex-1">
@@ -700,7 +727,7 @@
         <!-- Instructor 2 -->
         <div class="instructor-card text-center flex flex-col h-full">
           <div class="overflow-hidden h-56 shrink-0">
-            <img src="/assest/m2.jpg" alt="Coach Elena" class="w-full h-full object-cover object-top">
+            <img src="assest/m2.jpg" alt="Coach Elena" class="w-full h-full object-cover object-top">
           </div>
           <div class="p-6 flex flex-col flex-1">
             <div class="flex-1">
@@ -718,7 +745,7 @@
         <!-- Instructor 3 -->
         <div class="instructor-card text-center flex flex-col h-full">
           <div class="overflow-hidden h-56 shrink-0">
-            <img src="/assest/m3.jpg" alt="Coach Jamal" class="w-full h-full object-cover object-top">
+            <img src="assest/m3.jpg" alt="Coach Jamal" class="w-full h-full object-cover object-top">
           </div>
           <div class="p-6 flex flex-col flex-1">
             <div class="flex-1">
@@ -736,7 +763,7 @@
         <!-- Instructor 4 -->
         <div class="instructor-card text-center flex flex-col h-full">
           <div class="overflow-hidden h-56 shrink-0">
-            <img src="/assest/m4.jpg" alt="Coach Aiko" class="w-full h-full object-cover object-top">
+            <img src="assest/m4.jpg" alt="Coach Aiko" class="w-full h-full object-cover object-top">
           </div>
           <div class="p-6 flex flex-col flex-1">
             <div class="flex-1">
